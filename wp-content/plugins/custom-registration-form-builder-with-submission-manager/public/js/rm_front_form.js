@@ -55,7 +55,7 @@ function rmFontColor(rmColor) {
 function rmAddStyle(rmElement) {
     
     var rmHasText = jQuery(".rminput").children("input[type='text']").length;
-        if (!isNaN(rmHasText) && rmHasText > 0) {
+        if (jQuery.isNumeric(rmHasText) && rmHasText > 0) {
             var rmInputClass = jQuery(".rminput").children("input[type='text']").attr('class');
             if (rmInputClass != undefined) {
                 jQuery(".rm-input-control").addClass(rmInputClass);
@@ -333,24 +333,24 @@ jQuery(document).ready(function(){
         $rmagic.append("<input type='text' class='rm-input-control'><a class='rm-anchor-control'>.</a>");
 
         var rmHasSelect = jQuery(".rminput").children("select[multiple != multiple]").length;
-        if (!isNaN(rmHasSelect) && rmHasSelect > 0) {
+        if (jQuery.isNumeric(rmHasSelect) && rmHasSelect > 0) {
             rmAddStyle("select[multiple != multiple]");
             jQuery(".rminput").children("select[multiple != multiple]").css("background", "");}
 
         var rmHasNumber = jQuery(".rminput").children("input[type = 'number']").length;
-        if (!isNaN(rmHasNumber) && rmHasNumber > 0) {
+        if (jQuery.isNumeric(rmHasNumber) && rmHasNumber > 0) {
             rmAddStyle("input[type = 'number']");}
         
         var rmHasUrl = jQuery(".rminput").children("input[type = 'url']").length;
-        if (!isNaN(rmHasUrl) && rmHasUrl > 0) {
+        if (jQuery.isNumeric(rmHasUrl) && rmHasUrl > 0) {
             rmAddStyle("input[type = 'url']");}
         
         var rmHasPass = jQuery(".rminput").children("input[type = 'password']").length;
-        if (!isNaN(rmHasPass) && rmHasPass > 0) {
+        if (jQuery.isNumeric(rmHasPass) && rmHasPass > 0) {
             rmAddStyle("input[type = 'password']");}
         
         var rmHasAddress = jQuery(".rminput").children(".rm_address_type_ca").length;
-        if (!isNaN(rmHasAddress) && rmHasAddress > 0) {
+        if (jQuery.isNumeric(rmHasAddress) && rmHasAddress > 0) {
             rmAddStyle(".select2-selection.select2-selection--single");
             var rmLineHeight = jQuery(".select2-selection.select2-selection--single").outerHeight();
             jQuery(".select2-selection__rendered").css("line-height", rmLineHeight + "px");

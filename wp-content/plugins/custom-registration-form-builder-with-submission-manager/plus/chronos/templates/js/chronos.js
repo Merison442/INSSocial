@@ -170,7 +170,7 @@ function rmc_validate_action_config() {
     if(first_invalid_element_jq)
         first_invalid_element_jq.focus();
     if(is_valid)
-        jQuery("form").first().submit();
+        jQuery( "form:first" ).submit();
     return is_valid;
 }
 

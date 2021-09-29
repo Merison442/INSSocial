@@ -474,7 +474,7 @@ global $regmagic_errors;
         jQuery("#rm_settings_dailog_"+form_id).show();
     }
       
-jQuery("#rm_rateit_banner").on('rated', function (event, value) { 
+jQuery("#rm_rateit_banner").bind('rated', function (event, value) { 
         if(value<=3)
         {
             

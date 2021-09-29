@@ -30,6 +30,7 @@ var youzify_load_attachments = false;
 
 			// Init Effect On the appended elements also.
 			if ( $( '#youzify div.activity' )[0] ) {
+
 				// Init Effect On Activity Filters
 				var youzify_observer = new MutationObserver(function( mutations ) {
 					$.youzify_init_wall_posts_effect();
@@ -38,6 +39,7 @@ var youzify_load_attachments = false;
 
 				// Pass in the target node, as well as the observer options
 				youzify_observer.observe( $( '#youzify div.activity' )[0] , { attributes: false, childList: true, subtree:true, characterData: false } );
+
 			}
 
 		}
@@ -96,6 +98,7 @@ var youzify_load_attachments = false;
 		 * Modal.
 		 */
 		$( document ).on( 'click', '.youzify-delete-post' , function( e ) {
+
 			/* Delete activity stream items */
 			var target = $( this ),
 			li = target.parents( 'div.activity ul li' ),
@@ -108,13 +111,13 @@ var youzify_load_attachments = false;
 				'id': $( this ).parent().attr( 'data-activity-id' ),
 				'_wpnonce': target.attr( 'data-nonce' )
 			},
-			function(response) {
+			function( response ) {
 
 				if ( response[0] + response[1] === '-1' ) {
 					li.prepend( response.substr( 2, response.length ) );
-					li.children('#message').hide().fadeIn(300);
+					li.children( '#message' ).hide().fadeIn( 300 );
 				} else {
-					li.slideUp(300);
+					li.slideUp( 300 );
 
 					// reset vars to get newest activities
 					if ( timestamp && activity_last_recorded === timestamp[1] ) {
@@ -122,6 +125,7 @@ var youzify_load_attachments = false;
 						activity_last_recorded  = 0;
 					}
 				}
+
 			});
 
 		});
@@ -144,13 +148,18 @@ var youzify_load_attachments = false;
 				'action': 'youzify_activity_tagged_users_modal',
 				'post_id': li.attr( 'id' ).substr( 9, li.attr( 'id' ).length )
 			};
+
 			// Show Modal.
 			jQuery.post( Youzify.ajax_url, data, function( response ) {
+
 				var $new_modal = $( 'body' ).append( response );
+
 			    // Display Modal
 				$new_modal.find( '.youzify-wall-modal' ).addClass( 'youzify-wall-modal-show' );
+
 				// Hide Loader
 				$( '.youzify-wall-modal-overlay' ).find( '.youzify-modal-loader' ).hide();
+
 			});
 
 		});
@@ -510,6 +519,204 @@ var youzify_load_attachments = false;
 			}, 500);
 
 		});
+
+        /**
+         * Show Poll Result.
+         */
+        $( document ).on( 'click' , '.youzify-see-poll-results', function () {
+
+            // Get Parent.
+           var parent = $( this ).closest( '.youzify-poll-content' );
+
+			// Show Loader.
+			$( this ).find( 'i' ).attr( 'class', 'fas fa-spinner fa-spin' );
+
+			$.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'youzify_activity_result_content',
+                    activity_id: parent.attr( 'data-activity-id' )
+                },
+                success: function ( response ) {
+                    // Show Voting Results
+                    parent.find( '.youzify-poll-holder' ).html( $( response.data ) );
+                }
+
+            });
+
+        });
+
+        /**
+         *  Show Poll Options.
+         */
+        $( document ).on( 'click' , '.youzify-see-poll-options', function() {
+
+            // Get Parent.
+            var parent = $( this ).closest( '.youzify-poll-content' );
+
+            // Show Loader.
+            $( this ).find( 'i' ).attr( 'class', 'fas fa-spinner fa-spin' );
+
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'youzify_activity_revote_content',
+                    activity_id: parent.attr( 'data-activity-id' )
+                },
+                success: function ( response ) {
+
+                    // Show Poll Options.
+                    parent.find( '.youzify-poll-holder' ).html( $( response.data ).find( '.youzify-poll-options-holder' ) );
+
+                }
+            })
+
+        });
+
+        /**
+         *  Submit Votes.
+         */
+        $( document ).on( 'click', '.youzify-submit-vote', function () {
+
+            // Get Parent
+            var button = $( this ), parent = $( this ).closest( '.youzify-poll-content' );
+
+            // If Steal Loading Return.
+            if ( button.hasClass( 'yz-loading' ) ) {
+                return;
+            }
+
+            // Check If Disabled.
+            if ( $( this ).hasClass( 'youzify-disable-vote' ) ) {
+
+                // Show Error Message.
+                $.youzify_DialogMsg( 'error', Youzify.poll_option_empty );
+
+                return;
+
+            }
+
+            var valuesStatus = [], emptyBox = 0;
+
+            parent.find( 'input[name="youzify_poll_option[]"]:checked' ).each( function ( i ) {
+                // Set Option Value.
+                valuesStatus[ i ] = $( this ).val();
+            });
+
+            // Get Old Title.
+            var old_title = $( this ).html();
+
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'youzify_activity_poll_new_vote',
+                    voting_options: valuesStatus,
+                    activity_id: parent.attr( 'data-activity-id' )
+                },
+                beforeSend: function () {
+                    button.addClass( 'yz-loading' );
+                    button.html( '<i class="fas fa-spin fa-spinner"></i>' );
+                },
+                success: function ( response ) {
+
+                    // Remove Loading Class.
+                    button.removeClass( 'yz-loading' );
+
+                    // Show Old Title.
+                    button.html( old_title );
+
+                    // If Response Success False
+                    if ( ! response.success  ) {
+                        $.youzify_DialogMsg( 'error', response.data );
+                        return;
+                    }
+
+                    // Check If User Can Revote.
+                    if ( button.attr( 'data-revote' ) == 'off' ) {
+
+                        // Disable Options
+                        parent.find( '.youzify-poll-item-input' ).prop( "disabled", true );
+                        // Remove Button.
+                        button.remove();
+                    }
+
+                    // Show Message.
+                    if ( response.data['result'] ) {
+                        $.youzify_DialogMsg( 'success', response.data['msg'] );
+                    } else {
+                        // Show Voting Results
+                        parent.find( '.youzify-poll-holder' ).html( $( response.data ) );
+                    }
+
+                }
+            });
+        });
+
+
+        /**
+         * Disable Poll Button Submit.
+         */
+        $( document ).on( 'click' , '.youzify-poll-item-input', function() {
+
+            // Get Parent
+            var parent = $( this ).closest( '.youzify-poll-options-holder' );
+
+            if ( parent.find( '.youzify-poll-item-input:checked' ).length > 0 ) {
+
+                // Enable Button
+                parent.find( '.youzify-disable-vote' ).removeClass( 'youzify-disable-vote' );
+
+            } else if ( parent.find( '.youzify-poll-item-input:checked' ).length == 0 ) {
+
+                // Disable button.
+                parent.find( '.youzify-submit-vote' ).addClass( 'youzify-disable-vote' );
+
+            }
+
+        });
+
+
+        /**
+         *  Show All Voters.
+         */
+        $( document ).on( 'click' , '.youzify-show-voters' , function () {
+
+            //Get Parent.
+            var parent = $( this ).closest( '.youzify-poll-content' );
+
+            // Get Icon
+            var button = $( this );
+
+            // Get Old Icon.
+            var old_button = button.html();
+
+            // Show Loader.
+            button.html( '<i class="fas fa-spinner fa-spin"></i>' );
+
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'youzify_activity_all_voters',
+                    activity_id: parent.attr( 'data-activity-id' ),
+                    option_id: $( this ).attr( 'data-option-id' )
+                },
+                success: function ( response ) {
+
+            		// Reset Content
+            		button.html( old_button );
+
+                    // Append Data.
+                    parent.find( '.youzify-poll-holder' ).append( $( response.data ) );
+
+                }
+            })
+
+        });
+
 
 	});
 

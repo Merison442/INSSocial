@@ -137,12 +137,10 @@ class RM_Frontend_Form_Multipage extends RM_Frontend_Form_Base
                 $form->render();
             else
                 echo RM_UI_Strings::get('MSG_NO_FIELDS');
-            parent::post_render();
-        }
-        else
+        } else {
             $this->base_render($form);
+        }
         parent::post_render();
-
         echo '</div>';
     }
     

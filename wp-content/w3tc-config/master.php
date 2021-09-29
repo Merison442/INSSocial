@@ -1,5 +1,5 @@
 <?php exit; ?>{
-    "version": "2.1.6",
+    "version": "2.1.8",
     "cluster.messagebus.debug": false,
     "cluster.messagebus.enabled": false,
     "cluster.messagebus.sns.region": "",
@@ -60,6 +60,7 @@
     ],
     "docroot_fix.enable": false,
     "lazyload.enabled": false,
+    "lazyload.threshold": "",
     "lazyload.process_img": true,
     "lazyload.process_background": true,
     "lazyload.googlemaps.google_maps_easy": false,
@@ -864,6 +865,7 @@
             ]
         }
     },
+    "robots_block.enable": false,
     "common.track_usage": true,
     "common.tweeted": false,
     "config.check": true,
@@ -894,5 +896,9 @@
     "extensions.active_dropin": [],
     "plugin.license_key": "",
     "plugin.type": "",
-    "jquerymigrate.disabled": false
+    "jquerymigrate.disabled": false,
+    "pgcache.bad_behavior_path": "",
+    "newrelic": {
+        "monitoring_type": "apm"
+    }
 }

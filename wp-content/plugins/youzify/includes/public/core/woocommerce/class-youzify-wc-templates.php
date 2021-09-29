@@ -114,6 +114,11 @@ class Youzify_WC_Templates {
 	 * Locate Woocommerce Template Path.
 	 */
 	function locate_template( $template, $template_name, $template_path ) {
+
+		if ( ! youzify_is_woocommerce_tab() ) {
+			return $template;
+		}
+
 		global $woocommerce;
 
 		$_template = $template;

@@ -2,8 +2,9 @@
  * FILE for all the javascript functionality for the front end of the plugin
  */
 /* For front end OTP widget */
-var rm_ajax_url= rm_ajax.url;
-var rm_validation_attr= ['data-rm-valid-username','data-rm-valid-email'];
+var rm_ajax_url = rm_ajax.url;
+var rm_validation_attr = ['data-rm-valid-username','data-rm-valid-email'];
+var rm_ajax_security = rm_ajax.security;
 var rm_js_data;
 
 function rmInitGoogleApi() {
@@ -108,7 +109,7 @@ var rm_call_otp = function (event,elem,opType) {
         jQuery.post(rm_ajax_url, data, function (response) {
             jQuery(elem + " .rm_loader").hide();
             jQuery(elem + " .rm_hide_when_loader").show();
-            var responseObj = JSON.parse(response);
+            var responseObj = jQuery.parseJSON(response);
             if (responseObj.error == true) {
                 jQuery(elem + " #rm_otp_login .rm_f_notifications .rm_f_error").hide().html(responseObj.msg).slideDown('slow');
                 jQuery(elem + " #rm_otp_login .rm_f_notifications .rm_f_success").hide();
@@ -473,17 +474,17 @@ jQuery(document).ready(function () {
 
 resizeboxes();
 
-jQuery(window).on('load', function(){
-    resizeboxes();
+jQuery(window).load(function(){
+    resizeboxes();   
 });
    
    
-function handle_data(email,first_name,type,security) {
+function handle_data(email,first_name,type) {
 	var data = {
 			'action': 'rm_login_social_user',
 			'email': email,
             'type': type,
-            'security': security
+            'security': rm_ajax_security
 		};
     
 		/* since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php*/

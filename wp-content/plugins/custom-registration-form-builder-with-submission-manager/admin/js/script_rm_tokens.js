@@ -135,7 +135,7 @@
   Fidel.prototype.destroy = function() {
     this.el.empty();
     this.emit('destroy');
-    this.el.off(this.namespace);
+    this.el.unbind(this.namespace);
   };
 
   Fidel.declare = function(obj) {
@@ -415,7 +415,7 @@
       this.query.call(self, self.suggestionValue, function(suggestions){
         var len = suggestions.length;
 
-        if (suggestions && Array.isArray(suggestions) && len){
+        if (suggestions && $.isArray(suggestions) && len){
           var html = $('<ul>');
           this.suggestions = suggestions;
 
@@ -484,7 +484,7 @@
         }
       }
       else if (this.allowAddingNoSuggestion){
-        var val = this.inputText.val().trim() || '';
+        var val = $.trim(this.inputText.val());
         var isValid = this.validate(val);
         
         if(typeof isValid === 'string') {

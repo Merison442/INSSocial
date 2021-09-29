@@ -1003,10 +1003,11 @@ class Youzify_Wall {
 	        wp_enqueue_script( 'youzify-wall-form', YOUZIFY_ASSETS . 'js/youzify-wall-form.min.js', array( 'jquery' ), YOUZIFY_VERSION, true );
 
 	        $wall_args = apply_filters( 'Youzify_wall_js_args', array(
-	                'max_one_file'      => __( "You can't upload more than one file.", 'youzify' ),
-	                'base_url'          => $Youzify_upload_url,
-	                'giphy_limit'       => 12,
-	            ) );
+                'poll_max_options'  => __( 'The max number of allowed options is %d.', 'youzify' ),
+                'max_one_file'      => __( "You can't upload more than one file.", 'youzify' ),
+                'base_url'          => $Youzify_upload_url,
+                'giphy_limit'       => 12,
+            ) );
 
 	        // Localize Script.
 	        wp_localize_script( 'youzify-wall-form', 'Youzify_Wall', $wall_args );

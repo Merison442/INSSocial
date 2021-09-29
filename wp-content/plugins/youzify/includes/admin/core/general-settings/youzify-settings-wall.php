@@ -439,4 +439,133 @@ function youzify_wall_settings() {
 
     $Youzify_Settings->get_field( array( 'type' => 'closeBox' ) );
 
+    wp_enqueue_script( 'youzify-polls-admin', YOUZIFY_ADMIN_ASSETS . 'js/youzify-polls-admin.js', array( 'jquery' ) );
+
+    // start
+    $Youzify_Settings->get_field(
+        array(
+            'title' => __( 'Polls Form Settings', 'youzify' ),
+            'type'  => 'openBox'
+        )
+    );
+
+    // Checkbox Settings Example
+    $Youzify_Settings->get_field(
+        array(
+            'title' => __( 'Enable Multiple Options', 'youzify' ),
+            'desc'  => __( 'Allow users to choose if poll should be single or multiple', 'youzify' ),
+            'id'    => 'yzap_poll_multi_options',
+            'type'  => 'checkbox'
+        )
+    );
+
+    // Checkbox Settings Example
+    $Youzify_Settings->get_field(
+        array(
+            'title' => __( 'Enable Poll Options Images', 'youzify' ),
+            'desc'  => __( 'Allow users to attach images to voting options', 'youzify' ),
+            'id'    => 'yzap_poll_options_image_enable',
+            'type'  => 'checkbox'
+        )
+    );
+
+    // Checkbox Settings Example
+    $Youzify_Settings->get_field(
+        array(
+            'title' => __( 'Make Options Images Required', 'youzify' ),
+            'desc'  => __( 'Force users to upload an image for each option', 'youzify' ),
+            'id'    => 'yzap_poll_options_image',
+            'type'  => 'checkbox'
+        )
+    );
+
+    // Checkbox Settings Example
+    $Youzify_Settings->get_field(
+        array(
+            'title' => __( 'Poll Options Limit', 'youzify' ),
+            'desc'  => __( 'Set the limit of the poll options', 'youzify' ),
+            'id'    => 'yzap_poll_options_limit',
+            'type'  => 'number'
+        )
+    );
+    // Checkbox Settings Example
+    $Youzify_Settings->get_field(
+        array(
+            'title' => __( 'Default Poll Voting Mode', 'youzify' ),
+            'desc'  => __( 'Set default poll voting mode', 'youzify' ),
+            'id'    => 'yzap_poll_options_selection',
+            'type'  => 'select',
+            'opts'  => array(
+                'single' => __( 'Single Options', 'youzify' ),
+                'multi'  => __( 'Multiple Options', 'youzify' )
+            )
+        )
+    );
+
+    $Youzify_Settings->get_field( array( 'type' => 'closeBox' ) );
+
+
+    $Youzify_Settings->get_field(
+        array(
+            'title' => __( 'Polls Post Settings', 'youzify' ),
+            'type'  => 'openBox'
+        )
+    );
+
+    // Checkbox Settings Example
+    $Youzify_Settings->get_field(
+        array(
+            'title' => __( 'Enable Poll Result', 'youzify' ),
+            'desc'  => __( 'Allow users to view poll results', 'youzify' ),
+            'id'    => 'yzap_poll_options_result',
+            'type'  => 'checkbox'
+        )
+    );
+
+    // Checkbox Settings Example
+    $Youzify_Settings->get_field(
+        array(
+            'title' => __( 'Enable Revoting', 'youzify' ),
+            'desc'  => __( 'Allow users to change their votes after voting', 'youzify' ),
+            'id'    => 'yzap_poll_revote',
+            'type'  => 'checkbox'
+        )
+    );
+
+    // Checkbox Settings Example
+    $Youzify_Settings->get_field(
+        array(
+            'title' => __( 'Show Voters List', 'youzify' ),
+            'desc'  => __( 'Allow users to view list of voters', 'youzify' ),
+            'id'    => 'yzap_poll_list_voters',
+            'type'  => 'checkbox'
+        )
+    );
+
+    // Checkbox Settings Example
+    $Youzify_Settings->get_field(
+        array(
+            'title' => __( 'Max Voters Number', 'youzify' ),
+            'desc'  => __( 'Max voters to show', 'youzify' ),
+            'id'    => 'yzap_poll_limit_voters',
+            'type'  => 'number'
+        )
+    );
+
+    // Checkbox Settings Example
+    $Youzify_Settings->get_field(
+        array(
+            'title' => __( 'Default Polls Post View', 'youzify' ),
+            'desc'  => __( 'Which view should appear first in the polls post?', 'youzify' ),
+            'id'    => 'yzap_poll_options_redirection',
+            'type'  => 'select',
+            'opts'  => array(
+                'poll' => __( 'Poll Options', 'youzify' ),
+                'result'  => __( 'Result Options', 'youzify' )
+            )
+        )
+    );
+
+    $Youzify_Settings->get_field( array( 'type' => 'closeBox' ) );
+
 }

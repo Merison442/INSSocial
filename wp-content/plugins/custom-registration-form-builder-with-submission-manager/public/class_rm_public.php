@@ -156,6 +156,7 @@ class RM_Public {
                         'no_results'=>__('No Results Found','custom-registration-form-builder-with-submission-manager'),
                         'invalid_zip'=>__('Invalid Zip Code','custom-registration-form-builder-with-submission-manager'),
                         'request_processing'=>__('Please wait...','custom-registration-form-builder-with-submission-manager'),
+                        'security'=>wp_create_nonce('rm-social-login-security'),
                         'hours'=>__('Hours','custom-registration-form-builder-with-submission-manager'),
                         'minutes'=>__('Minutes','custom-registration-form-builder-with-submission-manager'),
                         'seconds'=>__('Seconds','custom-registration-form-builder-with-submission-manager'),
@@ -167,7 +168,7 @@ class RM_Public {
             $auth_options= $login_service->get_auth_options();
             $rm_ajax_data['max_otp_attempt'] = !empty($auth_options['en_resend_otp']) ? $auth_options['otp_resend_limit'] : 0;
         }
-        wp_localize_script( 'rm_front', 'rm_ajax',$rm_ajax_data);
+        wp_localize_script('rm_front','rm_ajax',$rm_ajax_data);
         wp_enqueue_script('rm_front');
         
         wp_register_script('rm_front_form_script', RM_BASE_URL."public/js/rm_front_form.js",array('rm_front'), $this->version, false);

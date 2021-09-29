@@ -1415,39 +1415,68 @@ class Youzify_Admin {
 	function show_activation_change_log() {
 
 	    // Check transient, if available display notice.
-
 		if ( get_transient( 'youzify-change-log-notice-' . YOUZIFY_VERSION ) ) {
+
 
 	    // Get PRO Tag.
 	    $pro = ! youzify_is_feature_available() ? '<span class="youzify-log-pro">PRO</span>' : '';
 
 	    // Get Log Details.
-	    $log = array(
-	        'title' => 'Youzify ' . YOUZIFY_VERSION,
-	        'log' => array(
-	            'new' => array(
-	                'Members Directory Design.',
-	                'Groups Directory Design.',
-	                'Activity with Left Sidebar Layout.',
-	                $pro . 'Activity Stream 3 Columns Layout.',
-	                'New Option - Change Activity Layout from Youzify Panel > General Settings > Wall Settings.',
-	                'New Option - Set Members Direcoty Header Options from Youzify Panel > General Settings > Members Directory Settings.',
-	                'New Option - Set Groups Direcoty Header Options from Youzify Panel > General Settings > Members Directory Settings.',
-	                'Instagram Widget Videos Support.',
-	            ),
-	            'fix' => array(
-	                'Live Notification Notice.',
-	                'Media Shortcode Lightbox.',
-	            ),
-	        )
+	    $logs = array(
+	    	array(
+		        'title' => 'Youzify ' . YOUZIFY_VERSION,
+		        'log' => array(
+		            'new' => array(
+		                $pro . 'Advanced Polls System.',
+		                $pro . 'Activity Poll Post Type.',
+		                $pro . 'Allow users to select multiple vote options.',
+		                $pro . 'Enbale / Disable Polls Images.',
+		                $pro . 'Force Polls Images Upload.',
+		                $pro . 'Limit Poll Options.',
+		                $pro . 'Set Default Poll Options Mode ( Single / Multiple ).',
+		                $pro . 'Enable / Disable Voting Results Visibility.',
+		                $pro . 'Enable / Disable Poll Voters.',
+		                $pro . 'Enbale / Disable Polls Revoting.',
+		                $pro . 'Set Maximum Voters Number to Show',
+		                $pro . 'Set Default PolL Post View ( Form or Results )',
+		                $pro . 'Activity Stream 3 Columns Layout.',
+		                $pro .'Poll Form Settings - Poll Options from Youzify Panel > General Settings > Wall Setting >  Polls Form Settings.',
+		                $pro .'Poll Post  Settings - Poll Options from Youzify Panel > General Settings > Wall Setting >  Polls Post Settings.',
+		            ),
+		            'fix' => array(
+		                'Pinned Posts Shows up for all users.',
+		                'Account Settings Bug.',
+		            ),
+		        ),
+	    	),
+	    	array(
+		        'title' => 'Youzify Previous Version',
+		        'log' => array(
+		            'new' => array(
+		                'Members Directory Design.',
+		                'Groups Directory Design.',
+		                'Activity with Left Sidebar Layout.',
+		                $pro . 'Activity Stream 3 Columns Layout.',
+		                'New Option - Change Activity Layout from Youzify Panel > General Settings > Wall Settings.',
+		                'New Option - Set Members Direcoty Header Options from Youzify Panel > General Settings > Members Directory Settings.',
+		                'New Option - Set Groups Direcoty Header Options from Youzify Panel > General Settings > Members Directory Settings.',
+		                'Instagram Widget Videos Support.',
+		            ),
+		            'fix' => array(
+		                'Live Notification Notice.',
+		                'Media Shortcode Lightbox.',
+		            ),
+		        ),
+
+	    	)
 	    );
 
 	    // Get Offer Details
 	    $offer = array(
-	        'label' => 'New BuddyPress Add-on Released!',
+	        'label' => 'Once in a lifetime offer',
 	        'image' => 'https://youzify.com/wp-content/uploads//edd/2021/08/buddypress-advanced-members-search.png',
-	        'title' => 'BuddyPress Advanced Members Search',
-	        'description' => 'Allow members or visitors to perform advanced searches on your website members with the ability to limit searches number or restrict forms by role.',
+	        'title' => '7-Day All-Access Pass ( HUGE SAVINGS )',
+	        'description' => 'Ends 14 September 2021,s 23.59GMT',
 	        'button' => 'Learn More',
 	        'link' => 'https://youzify.com/downloads/buddypress-advanced-members-search/?utm_campaign=changelog' . YOUZIFY_VERSION . '&utm_medium=notice&utm_source=client-site&utm_content=learn-more'
 	    );
@@ -1466,6 +1495,15 @@ class Youzify_Admin {
 	        ?>
 
 	        <style type="text/css">
+
+		        .youzify-log-content {
+				    margin-bottom: 35px;
+				}
+
+				.youzify-log-content:last-of-type {
+				    margin-bottom: 0;
+				}
+
 	            .youzify-log-message {
 
 	                display: flex;
@@ -1667,10 +1705,13 @@ class Youzify_Admin {
 	            }
 
 	        </style>
+	        <div style="margin-top: 35px;">
+	        	<?php youzify_offer_banner( true ); ?>
+	        </div>
 	        <div class="updated notice is-dismissible">
 	            <div class="youzify-log-message">
 	                <div class="youzify-logs">
-
+	                	<?php foreach( $logs as $log ) : ?>
 	                    <div class="youzify-log-content">
 	                        <div class="youzify-log-title"><span class="youzify-log-type youzify-free-label"><?php echo $log['title']; ?></span><span class="youzify-title-label ">Change Log</span></div>
 	                        <div class="youzify-log">
@@ -1685,10 +1726,11 @@ class Youzify_Admin {
 	                            <?php endforeach; endif; ?>
 	                        </div>
 	                    </div>
+	                        <?php endforeach; ?>
 
 	                </div>
 	                <div class="youzify-log-offers">
-	                    <div class="youzify-log-offer">
+	                 <!--    <div class="youzify-log-offer">
 	                            <div class="youzify-offer-label"><?php echo $offer['label']; ?></div>
 	                        <div class="youzify-offer-img"><a href="<?php echo $offer['link']; ?>"><img src="<?php echo $offer['image']; ?>" alt=""></a></div>
 	                        <div class="youzify-offer-details">
@@ -1696,7 +1738,7 @@ class Youzify_Admin {
 	                            <div class="youzify-offer-desc"><?php echo $offer['description']; ?></div>
 	                            <div class="youzify-offer-button"><a href="<?php echo $offer['link']; ?>"><?php echo $offer['button']; ?></a></div>
 	                        </div>
-	                    </div>
+	                    </div> -->
 
 	                    <?php if( strtotime( $coupon['date'] ) > strtotime('now') ) : ?>
 		                <div class="youzify-offer-coupon">

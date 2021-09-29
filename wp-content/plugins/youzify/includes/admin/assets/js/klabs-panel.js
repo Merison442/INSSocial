@@ -238,19 +238,24 @@
 		 */
 
 		// Show/Hide Boxes
-		$( '.kl-hide-box-icon' ).click( function( e ) {
+		$( document ).on( 'click', '.kl-hide-box-icon', function( e ) {
+
 	        e.preventDefault();
+
 	        // Get Parent Box.
 			var opts_box = $( this ).closest( '.uk-box-item' );
+
 			// Display or Hide Box.
-	        opts_box.find( '.uk-box-content' ).fadeToggle( 400, function(){
+	        opts_box.find( '.uk-box-content' ).fadeToggle( 400, function() {
 				// Toggle Box Message.
 				opts_box.toggleClass( 'kl-hide-box' );
 	        });
+
 		});
 
 		// Show/Hide Message
-		$( '.uk-toggle-msg' ).click( function( e ) {
+		$( document ).on( 'click', '.uk-toggle-msg', function( e ) {
+
 	        e.preventDefault();
 	        // Get Parent Box.
 			var msg_box = $( this ).closest( '.uk-panel-msg' );
@@ -268,13 +273,17 @@
 		});
 
 		// Remove Panel Message.
-		$( '.uk-close-msg' ).click( function( e ) {
+		$( document ).on( 'click', '.uk-close-msg', function( e ) {
+
 	        // Get Parent Box.
 			var msg_box = $( this ).closest( '.uk-panel-msg' );
+
 			// Change Box Input Value.
 			msg_box.find( 'input' ).val( 'never' );
+
 			// Remove Box.
 	        $( this ).closest( '.uk-panel-msg' ).fadeOut( 600 );
+
 		});
 
 		/**
@@ -304,7 +313,7 @@
 		});
 
 		// Hide Panel Menu if user choosed a tab.
-		$( '.uk-sidebar a' ).click( function( e ) {
+		$( document ).on( 'click', '.uk-sidebar a', function( e ) {
 			if ( $( '.kl-toggle-btn' ).is( ':checked' ) && $( window ).width() < 769 ) {
 		        // Change Menu Icon.
 				$( '.kl-toggle-btn' ).attr( 'checked', false );

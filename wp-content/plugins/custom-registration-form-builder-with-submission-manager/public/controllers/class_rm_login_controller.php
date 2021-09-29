@@ -19,7 +19,7 @@ class RM_Login_Controller{
         $otp_form_slug= "rm_otp_form_".RM_Public::$login_form_counter;
         $hide_forms= array();
         $gopts = new RM_Options();
-        // handle twitter callback
+        // handle facebook callback
         if(isset($request->req['rm_target']))
         {
             if($request->req['rm_target'] == 'fbcb')

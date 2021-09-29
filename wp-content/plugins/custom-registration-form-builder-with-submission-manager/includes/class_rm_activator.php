@@ -40,7 +40,7 @@ class RM_Activator
         update_site_option('rm_option_last_activation_time', time());
     }
     
-    public static function setup_recovery_page(){
+    public static function setup_recovery_page($network_wide){
         global $wpdb;
         if (is_multisite() && $network_wide)
         {

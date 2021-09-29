@@ -414,8 +414,8 @@ class Youzify_Styling {
             ),
             // Pagination Tab Styling .
             array(
-                'id'        =>  'youzify_paginationbg_color',
-                'selector'  =>  '.youzify-pagination .page-numbers,.youzify-pagination .youzify-pagination-pages',
+                'id'        =>  'youzify_pagination_bg_color',
+                'selector'  =>  '.youzify .youzify-pagination .page-numbers, .youzify .youzify-pagination .youzify-pagination-pages',
                 'property'  =>  'background-color'
             ),
             array(
@@ -424,8 +424,8 @@ class Youzify_Styling {
                 'property'  =>  'color'
             ),
             array(
-                'id'        =>  'youzify_paginationcurrent_bg_color',
-                'selector'  =>  '.youzify-pagination .page-numbers.current',
+                'id'        =>  'youzify_pagination_current_bg_color',
+                'selector'  =>  '.youzify .youzify-pagination .page-numbers.current',
                 'property'  =>  'background-color'
             ),
             array(
@@ -1046,6 +1046,8 @@ body .pagination .current,
 body .youzify-tab-title-box,
 body #youzify button[type='submit'],
 body .youzify-wall-file-post,
+body .youzify-current-bg-color,
+body .youzify-current-checked-bg-color:checked,
 body .button.accept {
             background-color: $scheme_color $important;
             color: $text_color $important;

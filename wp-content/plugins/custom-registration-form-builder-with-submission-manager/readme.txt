@@ -1,10 +1,10 @@
-=== RegistrationMagic - Custom Registration Forms and User Login ===
+=== RegistrationMagic - Custom Registration Forms, User Registration and User Login Plugin ===
 Contributors: registrationmagic, metagauss
 Donate link: http://registrationmagic.com/
 Tags: User Registration, Registration, WooCommerce Registration Form, Online Registration, event registration
 Requires at least: 3.5
 Tested up to: 5.8
-Stable tag: 5.0.1.1
+Stable tag: 5.0.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Create customized user registration forms, accept payments, track submissions, m
 
 == Description ==
 
-Create custom WordPress Registration Forms, accept payments, track submissions, manage users, analyze stats, assign user roles, automate processes, send bulk emails and much more. If you need to build a custom WordPress Registration Forms process, look no further!
+Create custom WordPress Registration Forms, allow secure user registration, accept payments, track submissions, manage users, analyze stats, assign user roles, automate processes, send bulk emails and much more. If you need to build a custom WordPress Registration Forms process, look no further!
 
 >Take total control of user registrations on your site, with powerful building, configuring, publishing, managing, analyzing and automation toolkit.
 
@@ -324,6 +324,10 @@ RegistrationMagic forms data and submission records work with WordPress' Export 
 = RegistrationMagic Translations =
 Please check out [this post](https://registrationmagic.com/translate-registrationmagic-to-your-language/) to learn translating RegistrationMagic to your language.
 
+----
+
+Thank you for reading this far. As you can see, RegistrationMagic is by far the most advanced plugin to build WordPress Registration forms. So, if you are interested in WordPress user registrations on your website, be sure to give it a shot. We're confident you will love it! If you find any features you need missing, feel free to write to our support team. We shall try to include them in a future release. 
+
 
 == Installation ==
 
@@ -411,6 +415,13 @@ Note, this functionality is limited to Premium version of RegistrationMagic.
 19. Global Settings.
 
 == Changelog ==
+
+= 5.0.1.3 =
+* Minor UI, workflow & security updates.
+
+= 5.0.1.2 =
+* Improved code security.
+* Multiple minor UI/UX changes.
 
 = 5.0.1.1 =
 * Fixed: Loading issue while publishing form using HTML code.
@@ -1869,6 +1880,13 @@ Fixed: Blocks showing up on front-end with some WP themes.
 * Added Custom Fields
 
 == Upgrade Notice ==
+
+= 5.0.1.3 =
+* Minor UI, workflow & security updates.
+
+= 5.0.1.2 =
+* Improved code security.
+* Multiple minor UI/UX changes.
 
 = 5.0.1.1 =
 * Fixed: Loading issue while publishing form using HTML code.

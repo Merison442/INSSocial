@@ -22,6 +22,9 @@ class Youzify_Attachments {
 		add_action( 'bp_activity_after_save', array( $this, 'set_new_avatar_activity' ) );
 		add_action( 'members_cover_image_uploaded', array( $this, 'set_new_cover_activity' ), 10, 3 );
 
+		// Upload Activity Meta Attachments
+		add_action( 'youzify_upload_activity_meta_attachments', array( $this, 'upload_activity_meta_attachments' ), 10, 3 );
+
 		// Save Messages Attachments.
 		add_action( 'messages_message_sent', array( $this, 'save_messages_attachments' ) );
 
@@ -88,6 +91,23 @@ class Youzify_Attachments {
 			}
 
 		}
+
+	}
+
+	/**
+	 * Save Activity mETA Attachments
+	 */
+	function upload_activity_meta_attachments( $attachments, $item_id, $component ) {
+
+		if ( empty( $attachments ) ) {
+			return;
+		}
+
+		// Sanitize Attachments.
+		$attachment_files = $this->sanitize_attachments( $attachments );
+
+		// Return Attachments.
+		return $this->save_attachments( $item_id, array( $attachment_files ), $component );
 
 	}
 
@@ -486,7 +506,7 @@ class Youzify_Attachments {
 
 	    	case 'activity':
 
-	    		if ( ! in_array( $_POST['post_type'], array( 'activity_photo', 'activity_slideshow' ) ) ) {
+	    		if ( ! in_array( $_POST['post_type'], array( 'activity_photo', 'activity_slideshow', 'activity_poll' ) ) ) {
 		    		if ( $_POST['attachments_number'] > 1 ) {
 						wp_send_json_error( array( 'error' => __( "You can't upload more than one file.", 'youzify' ) ) );
 		    		}

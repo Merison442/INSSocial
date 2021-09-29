@@ -15,7 +15,7 @@
  * Plugin Name:       RegistrationMagic
  * Plugin URI:        http://www.registrationmagic.com
  * Description:       A powerful system for customizing registration forms, setting up paid registrations, tracking submissions, managing users, assigning user roles, analyzing stats, and much more!!
- * Version:           5.0.1.1
+ * Version:           5.0.1.3
  * Tags:              registration, form, custom, analytics, simple, submissions
  * Requires at least: 3.3.0
  * Requires PHP: 5.6
@@ -64,7 +64,7 @@ $rmgold = 'registrationmagic-gold/registration_magic.php';
 $rmgoldi2 = 'registrationmagic-gold-i2/registration_magic.php';
 $rmbasic = 'custom-registration-form-builder-with-submission-manager/registration_magic.php';
 
-if (defined('REGMAGIC_SILVER') || defined('REGMAGIC_GOLD') || defined('REGMAGIC_GOLD_i2')) {
+if (defined('REGMAGIC_SILVER') || defined('REGMAGIC_GOLD_i2')) {
     return;    
 }
 
@@ -78,7 +78,7 @@ if (is_plugin_active_for_network($rmgold) || is_plugin_active($rmgold) ||
 */
 if(!defined('RM_PLUGIN_VERSION')) {
 define('RM_PLUGIN_BASENAME', plugin_basename(__FILE__ ));
-define('RM_PLUGIN_VERSION', '5.0.1.1');
+define('RM_PLUGIN_VERSION', '5.0.1.3');
 define('RM_DB_VERSION', 5.5);
 define('RM_SHOW_WHATSNEW_SPLASH', false);  //Set it to 'false' to disable whatsnew screen.
 //define FB SDK req flags. Flags should be combined using logical OR and should be checked using AND.

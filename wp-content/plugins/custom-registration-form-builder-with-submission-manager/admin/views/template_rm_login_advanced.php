@@ -54,7 +54,7 @@ if(defined('REGMAGIC_ADDON')) include_once(RM_ADDON_ADMIN_DIR . 'views/template_
                 </select> 
                 </div>
                 <div class="rm-login-filter">
-                <label><?php _e('Global Expression: ', 'custom-registration-form-builder-with-submission-manager'); ?></label><input type="text" name="rm_search_value" value="<?php echo (isset($_REQUEST['rm_search_value']) && $_REQUEST['rm_search_value']!='')?$_REQUEST['rm_search_value']:'' ?>" placeholder="<?php _e('username, first name, last name, IP', 'custom-registration-form-builder-with-submission-manager'); ?>" /> &nbsp; 
+                <label><?php _e('Global Expression: ', 'custom-registration-form-builder-with-submission-manager'); ?></label><input type="text" name="rm_search_value" value="<?php echo (isset($_REQUEST['rm_search_value']) && $_REQUEST['rm_search_value']!='')?sanitize_text_field($_REQUEST['rm_search_value']):'' ?>" placeholder="<?php _e('username, first name, last name, IP', 'custom-registration-form-builder-with-submission-manager'); ?>" /> &nbsp; 
                 </div>
                 <div class="rm-login-filter"><input type="submit" name="Search" value="<?php _e('Search', 'custom-registration-form-builder-with-submission-manager'); ?>"></div>
                 

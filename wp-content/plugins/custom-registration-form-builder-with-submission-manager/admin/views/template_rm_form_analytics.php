@@ -129,7 +129,11 @@ endif;
         ?>
         <tr>
             <td><?php echo $i; ?></td>
+            <?php if($stat->user_ip == '::1') { ?>
+            <td><?php echo 'localhost'; ?></td>
+            <?php } else { ?>
             <td><a href='https://geoiptool.com/?ip=<?php echo $stat->user_ip; ?>'><?php echo $stat->user_ip; ?></a></td>
+            <?php } ?>
             <td>&nbsp;
                 <?php
                 if ($stat->submitted_on && $stat->submitted_on != 'banned')

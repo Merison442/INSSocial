@@ -498,6 +498,8 @@ function youzify_scripts_vars() {
         'gotit' => __( 'Got it!', 'youzify' ),
         'done' => __( 'Done!', 'youzify' ),
         'ops' => __( 'Oops!', 'youzify' ),
+        'poll_option' => __( 'Option %d', 'youzify' ),
+        'poll_option_empty' => __( 'Sorry, you need to choose at least one option.', 'youzify' ),
         'slideshow_speed' => 5,
         'assets' => YOUZIFY_ASSETS,
         'youzify_url' => YOUZIFY_URL,

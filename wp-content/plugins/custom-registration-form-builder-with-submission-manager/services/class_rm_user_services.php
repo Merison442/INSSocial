@@ -392,7 +392,6 @@ class RM_User_Services extends RM_Services
             if (!$fb_app_id)
                 return;
             
-            $ajax_nonce = wp_create_nonce('rm-social-login-security');
             return "<pre class='rm-pre-wrapper-for-script-tags'><script>
   function checkLoginState() {
    FB.getLoginStatus(function(response) {
@@ -402,7 +401,7 @@ class RM_User_Services extends RM_Services
   else {
   FB.login(function(response) {
 FB.api('/me',{fields: 'first_name,email'}, function (response) {
-	handle_data(response.email,response.first_name,'facebook','$ajax_nonce');
+	handle_data(response.email,response.first_name,'facebook');
 
 
 });
@@ -412,7 +411,7 @@ FB.api('/me',{fields: 'first_name,email'}, function (response) {
   }
 function greet() {
 FB.api('/me',{fields: 'first_name,email'}, function (response) {
-	handle_data(response.email,response.first_name,'facebook','$ajax_nonce');
+	handle_data(response.email,response.first_name,'facebook');
 
 
 });
@@ -733,7 +732,12 @@ FB.api('/me',{fields: 'first_name,email'}, function (response) {
     }
     
     public function social_login_using_email($user_email = null, $user_fname = null,$type=null) {
-        check_ajax_referer('rm-social-login-security', 'security'); // Check referer validity
+        $ajax_check = check_ajax_referer('rm-social-login-security', 'security'); // Check referer validity
+        if($ajax_check == false) {
+            $resp = array('code' => 'denied', 'msg' => __('Request denied','custom-registration-form-builder-with-submission-manager'));
+            echo json_encode($resp);
+            die;
+        }
         if (isset($_POST['email']))
             $user_email = $_POST['email'];
         if (isset($_POST['first_name']))

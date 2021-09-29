@@ -187,14 +187,14 @@
 
 			overrides = {
 				beforeShow: function (input, dp_inst) {
-					if (typeof tp_inst._defaults.evnts.beforeShow === "function") {
+					if ($.isFunction(tp_inst._defaults.evnts.beforeShow)) {
 						return tp_inst._defaults.evnts.beforeShow.call($input[0], input, dp_inst, tp_inst);
 					}
 				},
 				onChangeMonthYear: function (year, month, dp_inst) {
 					// Update the time as well : this prevents the time from disappearing from the $input field.
 					// tp_inst._updateDateTime(dp_inst);
-					if (typeof tp_inst._defaults.evnts.onChangeMonthYear === "function") {
+					if ($.isFunction(tp_inst._defaults.evnts.onChangeMonthYear)) {
 						tp_inst._defaults.evnts.onChangeMonthYear.call($input[0], year, month, dp_inst, tp_inst);
 					}
 				},
@@ -202,7 +202,7 @@
 					if (tp_inst.timeDefined === true && $input.val() !== '') {
 						tp_inst._updateDateTime(dp_inst);
 					}
-					if (typeof tp_inst._defaults.evnts.onClose === "function") {
+					if ($.isFunction(tp_inst._defaults.evnts.onClose)) {
 						tp_inst._defaults.evnts.onClose.call($input[0], dateText, dp_inst, tp_inst);
 					}
 				}
@@ -304,7 +304,7 @@
 			if (tp_inst._defaults.maxDateTime !== undefined && tp_inst._defaults.maxDateTime instanceof Date) {
 				tp_inst._defaults.maxDate = new Date(tp_inst._defaults.maxDateTime.getTime());
 			}
-			tp_inst.$input.on('focus', function () {
+			tp_inst.$input.bind('focus', function () {
 				tp_inst._onFocus();
 			});
 
@@ -315,8 +315,7 @@
 		* add our sliders to the calendar
 		*/
 		_addTimePicker: function (dp_inst) {
-			var currDT = (this.$altInput && this._defaults.altFieldTimeOnly) ? this.$input.val() + ' ' + this.$altInput.val() : this.$input.val();
-            currDT = currDT.trim();
+			var currDT = $.trim((this.$altInput && this._defaults.altFieldTimeOnly) ? this.$input.val() + ' ' + this.$altInput.val() : this.$input.val());
 
 			this.timeDefined = this._parseTime(currDT);
 			this._limitMinMaxDateTime(dp_inst, false);
@@ -363,7 +362,7 @@
 		*/
 		_afterInject: function() {
 			var o = this.inst.settings;
-			if (typeof o.afterInject === "function") {
+			if ($.isFunction(o.afterInject)) {
 				o.afterInject.call(this);
 			}
 		},
@@ -558,7 +557,7 @@
 							$tp.find('.ui-slider:visible').sliderAccess(sliderAccessArgs);
 
 							// fix any grids since sliders are shorter
-							var sliderAccessWidth = $tp.find('.ui-slider-access').eq(0).outerWidth(true);
+							var sliderAccessWidth = $tp.find('.ui-slider-access:eq(0)').outerWidth(true);
 							if (sliderAccessWidth) {
 								$tp.find('table:visible').each(function () {
 									var $g = $(this),
@@ -1078,7 +1077,7 @@
 					for (var i = min; i <= max; i += step) {
 						sel += '<option value="' + i + '"' + (i === val ? ' selected' : '') + '>';
 						if (unit === 'hour') {
-							sel += $.datepicker.formatTime(format.replace(/[^ht ]/ig, '').trim(), {hour: i}, tp_inst._defaults);
+							sel += $.datepicker.formatTime($.trim(format.replace(/[^ht ]/ig, '')), {hour: i}, tp_inst._defaults);
 						}
 						else if (unit === 'millisec' || unit === 'microsec' || i >= 10) { sel += i; }
 						else {sel += '0' + i.toString(); }

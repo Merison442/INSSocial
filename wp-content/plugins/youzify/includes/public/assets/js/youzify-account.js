@@ -14,11 +14,9 @@
 		$( document ).on( 'click', '.youzify-upload-photo', function( e ) {
 			e.preventDefault();
 			var uploader = $( this ).closest( '.youzify-uploader-item' );
-
 			uploader.find( '.youzify_upload_file' ).attr( 'data-source', $( 'input[name=youzify_widget_source]' ).val() );
 			uploader.find( '.youzify_upload_file' ).attr( 'data-user-id', $( 'input[name=youzify_widget_user_id]' ).val() );
 			uploader.find( '.youzify_upload_file' ).trigger( 'click' );
-
 		});
 
 	    /*
@@ -59,8 +57,6 @@
 	            	file.val( '' );
 
 	            	// Get Response Data.
-	            	// var res = $.parseJSON( data );
-
 		            if ( response.success == false ) {
 	            		// Hide Loader.
 	            		preview.find( '.youzify-load-photo' ).fadeOut( 300 ).remove();

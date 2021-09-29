@@ -228,7 +228,7 @@
 		    formData.append( 'attachments_number', form.find( '.youzify-attachment-item' ).length );
 		    formData.append( 'action', 'youzify_upload_wall_attachments' );
 		    formData.append( 'security', Youzify.security_nonce );
-		    console.log( formData );
+
 		    // Upload File.
 		    $.ajax({
 		        type  : 'POST',
@@ -287,6 +287,11 @@
 		            		form.find( '.youzify-wall-upload-btn' ).fadeIn();
 		            	} else if ( form.attr( 'id' ) == 'send-reply' || form.attr( 'id' ) == 'send_message_form' ) {
 		            		form.find( '.youzify-upload-btn' ).fadeIn();
+		            	}
+
+		            	// Show Form Custom Post Type Upload Button.
+		            	if ( attachments_parent.hasClass( 'youzify-cf-attachment' ) ) {
+		            		attachments_parent.find( '.youzify-wall-item-upload' ).fadeIn();
 		            	}
 
 		            	// Remove Item.
@@ -534,7 +539,7 @@
 		 **/
 		$.youzify_CheckFilesNumber = function( form ) {
 			var activity_type = form.find( 'input:radio[name="post_type"]:checked' ).val();
-			if ( 'activity_photo' != activity_type && 'activity_slideshow' != activity_type && form.find( '.youzify-attachment-item' )[0] ) {
+			if ( 'activity_photo' != activity_type && 'activity_poll' != activity_type && 'activity_slideshow' != activity_type && form.find( '.youzify-attachment-item' )[0] ) {
 				youzify_atts_files = null;
 				$.youzify_DialogMsg( 'error', Youzify_Wall.max_one_file );
 				return false;

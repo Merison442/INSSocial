@@ -175,63 +175,6 @@ class Youzify_Setup {
 
         global $wpdb, $bp, $wp_registered_widgets;
 
-        // Get Old Table Name.
-        $old_table = $wpdb->prefix . 'yz_reviews';
-		$table_exists_query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $old_table ) );
-
-	    if ( $wpdb->get_var( $table_exists_query ) === $old_table ) {
-
-		    // $tables= array(
-		    //     'yz_media' => 'youzify_media',
-		    //     'yz_bookmark' => 'youzify_bookmarks',
-		    //     'logy_users' => 'youzify_social_login_users',
-		    //     'yz_reviews' => 'youzify_reviews',
-		    //     'yz_hashtags' => 'youzify_hashtags',
-		    //     'yz_hashtags_items' => 'youzify_hashtags_items',
-		    // );
-
-		    // foreach ( $tables as $old_table => $new_table ) {
-		    //     $wpdb->query( 'ALTER TABLE ' . $wpdb->prefix . $old_table . ' RENAME TO ' . $wpdb->prefix . $new_table . ';' );
-		    // }
-
-		    // youzify_update_option( 'youzify_upgrade_youzer_database_tables', true );
-
-		    // Update Sidebars.
-			$sidebars = get_option( 'sidebars_widgets' );
-
-			if ( ! empty( $sidebars ) ) {
-
-				$youzify_sidebars = array(
-				  'yz-wall-sidebar' => 'youzify-wall-sidebar',
-				  'yz-forum-sidebar' => 'youzify-forum-sidebar',
-				  'yz-groups-sidebar' => 'youzify-groups-sidebar'
-				);
-
-			    foreach ( $sidebars as $sidebar => $widgets) {
-			      if ( isset( $youzify_sidebars[ $sidebar ] ) && ! empty( $widgets ) ) {
-			        foreach ( $widgets as $key => $widget ) {
-
-			        	// Move Old Widget Data.
-			        	if ( isset( $wp_registered_widgets[ $widget ] ) ) {
-			        		$old_option_name = $wp_registered_widgets[ $widget ]['callback'][0]->option_name;
-			        		// Old Widget Data
-			        		$old_widget = get_option( $old_option_name );
-			        		$new_widget_name = str_replace( array( 'yz_', 'logy_' ), 'youzify_', $old_option_name );
-				    		update_option( $new_widget_name, $old_widget );
-			        	}
-
-			          	$sidebars[ $youzify_sidebars[ $sidebar ] ][] = str_replace( array( 'yz_', 'logy_' ), 'youzify_', $widget );
-			        }
-			      }
-			    }
-
-			}
-
-			youzify_update_option( 'sidebars_widgets', $sidebars );
-
-	        return;
-	    }
-
         // Set Variables
         $sql = array();
         $hashtags_table = $wpdb->prefix . 'youzify_hashtags';
@@ -241,6 +184,7 @@ class Youzify_Setup {
         $reviews_table = $wpdb->prefix . 'youzify_reviews';
         $albums_table = $wpdb->prefix . 'youzify_albums';
         $albums_items_table = $wpdb->prefix . 'youzify_albums_items';
+	    $polls_table = $wpdb->prefix . 'youzify_activity_polls_votes';
         $media_table = $wpdb->prefix . 'youzify_media';
         $charset_collate = $wpdb->get_charset_collate();
 
@@ -330,25 +274,15 @@ class Youzify_Setup {
 			PRIMARY KEY (id)
 		) $charset_collate;";
 
-		// $sql[] = "CREATE TABLE $albums_table (
-		// 	id BIGINT(20) NOT NULL AUTO_INCREMENT,
-		// 	title varchar(200) NOT NULL,
-		// 	description LONGTEXT NULL,
-		// 	cover varchar(100)  NULL,
-		// 	privacy varchar(10) NOT NULL,
-		// 	item_id int(11) NOT NULL,
-		// 	component varchar(10) NOT NULL,
-		//  	time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
-		// 	PRIMARY KEY (id)
-		// ) $charset_collate;";
-
-		// $sql[] = "CREATE TABLE $albums_items_table (
-		// 	id BIGINT(20) NOT NULL AUTO_INCREMENT,
-		// 	album_id int(11) NOT NULL,
-		// 	media_id BIGINT(20) NOT NULL,
-		//  	time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
-		// 	PRIMARY KEY (id)
-		// ) $charset_collate;";
+        // Table SQL Code.
+        $sql[] = "CREATE TABLE $polls_table (
+            id int(11) NOT NULL AUTO_INCREMENT,
+            activity_id int(11) NOT NULL,
+            option_id int(4) NOT NULL,
+            user_id int(11) NOT NULL,
+            voting_time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+            PRIMARY KEY (id)
+        ) $charset_collate;";
 
         $row = $wpdb->get_results(  "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = '{$bp->activity->table_name}' AND column_name = 'privacy'"  );
 
@@ -361,6 +295,49 @@ class Youzify_Setup {
 
 		// Build Tables.
 		dbDelta( $sql );
+
+		    // Get Old Table Name.
+        $old_table = $wpdb->prefix . 'yz_reviews';
+		$table_exists_query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $old_table ) );
+
+	    if ( $wpdb->get_var( $table_exists_query ) === $old_table ) {
+
+		    // Update Sidebars.
+			$sidebars = get_option( 'sidebars_widgets' );
+
+			if ( ! empty( $sidebars ) ) {
+
+				$youzify_sidebars = array(
+				  'yz-wall-sidebar' => 'youzify-wall-sidebar',
+				  'yz-forum-sidebar' => 'youzify-forum-sidebar',
+				  'yz-groups-sidebar' => 'youzify-groups-sidebar'
+				);
+
+			    foreach ( $sidebars as $sidebar => $widgets) {
+			      if ( isset( $youzify_sidebars[ $sidebar ] ) && ! empty( $widgets ) ) {
+			        foreach ( $widgets as $key => $widget ) {
+
+			        	// Move Old Widget Data.
+			        	if ( isset( $wp_registered_widgets[ $widget ] ) ) {
+			        		$old_option_name = $wp_registered_widgets[ $widget ]['callback'][0]->option_name;
+			        		// Old Widget Data
+			        		$old_widget = get_option( $old_option_name );
+			        		$new_widget_name = str_replace( array( 'yz_', 'logy_' ), 'youzify_', $old_option_name );
+				    		update_option( $new_widget_name, $old_widget );
+			        	}
+
+			          	$sidebars[ $youzify_sidebars[ $sidebar ] ][] = str_replace( array( 'yz_', 'logy_' ), 'youzify_', $widget );
+			        }
+			      }
+			    }
+
+			}
+
+			youzify_update_option( 'sidebars_widgets', $sidebars );
+
+	        return;
+	    }
+
 
 	}
 

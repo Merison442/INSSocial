@@ -67,7 +67,7 @@
 		<input type="submit" value="<?php esc_attr_e( 'Send Message', 'youzify' ); ?>" name="send" id="send" />
 	</div>
 
-	<div class="youzify-wall-attachments">
+	<div class="youzify-wall-attachments youzify-attachments">
 		<input hidden="true" class="youzify-upload-attachments" type="file" name="attachments[]" multiple>
 		<div class="youzify-form-attachments"></div>
 	</div>

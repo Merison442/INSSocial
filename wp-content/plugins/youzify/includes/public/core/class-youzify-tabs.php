@@ -41,14 +41,6 @@ class Youzify_Tabs {
 	        'screen_function' => array( $this, 'info_screen' ),
 	    ) );
 
-	    $posts_args = apply_filters( 'youzify_profile_posts_tab_args', array(
-	        'position' => 14,
-	        'slug' => 'posts',
-	        'parent_slug' => $bp->profile->slug,
-	        'name' => __( 'Posts', 'youzify' ),
-	        'screen_function' => array( $this, 'posts_screen' ),
-	    ) );
-
 	    $comments_args = apply_filters( 'youzify_profile_comments_tab_args', array(
 	        'position' => 15,
 	        'slug' => 'comments',
@@ -63,10 +55,19 @@ class Youzify_Tabs {
 	    // Add Infos Tab.
 	    bp_core_new_nav_item( $info_args );
 
-	    // Add Posts Tab.
-	    bp_core_new_nav_item( $posts_args );
+		if ( apply_filters( 'youzify_add_profile_posts_tab', true ) ) {
 
-		if ( apply_filters( 'youzify_add_profile_posts_sub_tab', false ) ) {
+		    $posts_args = apply_filters( 'youzify_profile_posts_tab_args', array(
+		        'position' => 14,
+		        'slug' => 'posts',
+		        'parent_slug' => $bp->profile->slug,
+		        'name' => __( 'Posts', 'youzify' ),
+		        'screen_function' => array( $this, 'posts_screen' ),
+		    ) );
+
+		    // Add Posts Tab.
+		    bp_core_new_nav_item( $posts_args );
+
 
 			// Add Sub Tab.
 		    bp_core_new_subnav_item(
@@ -113,6 +114,7 @@ class Youzify_Tabs {
 		            bp_core_new_subnav_item( array(
 		                    'slug' => $page['slug'],
 		                    'name' => $page['title'],
+		                    'slug' => $page['position'],
 		                    'parent_slug' => $media_slug,
 		                    'parent_url' => $user_domain . "$media_slug/",
 		                    'screen_function' => array( $this, 'media_screen' ),
@@ -521,15 +523,18 @@ class Youzify_Tabs {
                 continue;
             }
 
-            bp_core_new_subnav_item( array(
+            bp_core_new_subnav_item(
+            	array(
                     'slug' => $page['slug'],
                     'name' => $page['title'],
+		            'slug' => $page['position'],
                     'parent_slug' => $group_media_slug,
                     'item_css_id' => 'media-' . $page['slug'],
                     'parent_url' => bp_get_group_permalink( $group )  . "$group_media_slug/",
                     'screen_function' => array( $this, 'groups_media_screen' ),
                 ), 'groups'
             );
+
         }
 
         // Call Media Tab Content.
@@ -547,25 +552,33 @@ class Youzify_Tabs {
 		return apply_filters( 'youzify_' . $component . '_media_subtabs', array(
 	        'all' => array(
 	            'title' => __( 'All', 'youzify' ),
-	            'slug' => 'all'
+	            'slug' => 'all',
+	            'position' => 10,
 	        ),
 	        'photos' => array(
 	            'title' => __( 'Photos', 'youzify' ),
-	            'slug' => 'photos'
+	            'slug' => 'photos',
+	            'position' => 20
 	        ),
 	        'videos' => array(
 	            'title' => __( 'Videos', 'youzify' ),
-	            'slug' => 'videos'
+	            'slug' => 'videos',
+	            'position' => 30
 	        ),
 	        'audios' => array(
 	            'title' => __( 'Audios', 'youzify' ),
-	            'slug' => 'audios'
+	            'slug' => 'audios',
+	            'position' => 40
 	        ),
 	        'files' => array(
 	            'title' => __( 'Files', 'youzify' ),
-	            'slug' => 'files'
+	            'slug' => 'files',
+	            'position' => 50
 	        )
-	    ) );
+	    )
+
+		);
+
 	}
 
 }

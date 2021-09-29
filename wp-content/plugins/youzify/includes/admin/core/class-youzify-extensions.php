@@ -97,7 +97,7 @@ class Youzify_Extensions {
 	function get_products() {
 
         // Get Products
-        $products_url = 'https://www.kainelabs.com/edd-api/products/';
+        $products_url = 'https://www.youzify.com/edd-api/products/';
 
         $remote = wp_remote_get( $products_url );
 

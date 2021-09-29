@@ -325,11 +325,89 @@ class Youzify_Admin_Ajax {
 
 	    }
 
+	    // Save Poll Options
+	    $this->save_polls_settings( $options );
+
 	    // Actions
 	    do_action( 'youzify_panel_save_settings' );
 
 		wp_send_json_success( array( 'result' => 1, 'message' => __( 'Success!', 'youzify' ) ) );
 		exit();
+
+	}
+
+	/**
+	 * Save Poll Settings.
+	 **/
+	function save_polls_settings( $options ) {
+
+	    if ( empty( $options ) ) {
+	    	return;
+	    }
+
+	    $new_form_options = array();
+
+	    $new_poll_result_options = array();
+
+	    $new_poll_post_options = array();
+
+	    $form_options = array(
+	    	'yzap_poll_options_limit' 	  	 => 'options_limit',
+	    	'yzap_poll_multi_options' 	  	 => 'multi_options',
+	    	'yzap_poll_options_selection' 	 => 'options_selection',
+	    	'yzap_poll_options_image' 	  	 => 'options_image',
+	    	'yzap_poll_options_image_enable' => 'options_image_enable',
+	    );
+
+	    $poll_result_options = array(
+	    	'yzap_poll_list_voters' 		=> 'list_voters',
+	    	'yzap_poll_limit_voters' 		=> 'limit_voters',
+	    	'yzap_poll_options_image_enable' => 'options_image_enable',
+	    );
+
+	    $poll_post_options = array(
+	    	'yzap_poll_options_result' 		=> 'options_result',
+	    	'yzap_poll_options_redirection' => 'options_redirection',
+	    	'yzap_poll_revote' 				=> 'poll_revote'
+	    );
+
+	    foreach( $options as $option_id => $value ) {
+
+	    	if ( empty( $value ) ) {
+	    		continue;
+	    	}
+
+	    	if ( isset( $form_options[ $option_id] ) ) {
+	    		$new_form_options[ $form_options[ $option_id ] ] = $value;
+	    	}
+
+	    	if ( isset( $poll_result_options[ $option_id ] ) ) {
+	    		$new_poll_result_options[ $poll_result_options[ $option_id ] ] = $value;
+	    	}
+
+	    	if ( isset( $poll_post_options[ $option_id ] ) ) {
+	    		$new_poll_post_options[ $poll_post_options[ $option_id ] ] = $value;
+	    	}
+
+	    }
+
+	    if ( ! empty( $new_form_options ) ) {
+	    	update_option( 'youzify_poll_form_options',  $new_form_options );
+	    } else {
+	    	delete_option( 'youzify_poll_form_options' );
+	    }
+
+	    if ( ! empty( $new_poll_result_options ) ) {
+	    	update_option( 'youzify_poll_result_options',  $new_poll_result_options );
+	    } else {
+	    	delete_option( 'youzify_poll_result_options' );
+	    }
+
+	    if ( ! empty( $new_poll_post_options ) ) {
+	    	update_option( 'youzify_poll_post_options',  $new_poll_post_options );
+	    } else {
+	    	delete_option( 'youzify_poll_post_options' );
+	    }
 
 	}
 

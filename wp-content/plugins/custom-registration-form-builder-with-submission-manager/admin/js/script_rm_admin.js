@@ -112,6 +112,12 @@
             }
         });
 
+        RM_jQ('#id_paypal_field_type_dd').find('option').each(function(index) {
+            if(jQuery(this).val() != 'fixed') {
+                jQuery(this).prop('disabled',true);
+            }
+        });
+        
         field_type = RM_jQ('#id_paypal_field_type_dd').val();
 
         if (field_type)

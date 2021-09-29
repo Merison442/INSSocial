@@ -5,7 +5,8 @@
 
 	$( document ).ready( function() {
 
-		var load_wall_form_js = false;
+		var load_wall_form_js = false,
+			load_wall_polls_js = false;
 
 		/**
 		 * Show All Form Buttons
@@ -247,6 +248,11 @@
 		            	form.find( '.youzify-giphy-submit-search' ).val( '' ).trigger( 'click' );
 		            }
 
+		            // Reset Custom Fields Content.
+		            if ( inputs.post_type == 'activity_poll' ) {
+			            form.find( '.youzify-wall-cf-input' ).val( '' );
+			            form.find( '.youzify-wall-poll-form .youzify-wall-cf-item:not(:nth-child(1)):not(:nth-child(2)) .youzify-wall-form-remove-item' ).trigger( 'click' );
+			        }
 
 					// reset vars to get newest activities
 					newest_activities = '';
@@ -298,14 +304,34 @@
 			}
 
 	        // Set Input Supported Elements.
-	        if ( post_type == 'activity_video' ) {
-	        	form.find( '.youzify-upload-attachments' ).attr( 'accept', 'video/*' );
-	        } else if ( post_type == 'activity_audio' ) {
-	        	form.find( '.youzify-upload-attachments' ).attr( 'accept', 'audio/*' );
-	        } else if ( post_type == 'activity_file' ) {
-	        	form.find( '.youzify-upload-attachments' ).removeAttr( 'accept' );
-	        } else {
-	        	form.find( '.youzify-upload-attachments' ).attr( 'accept', 'image/*' );
+	        switch( post_type ) {
+
+	        	case 'activity_video':
+	        		form.find( '.youzify-upload-attachments' ).attr( 'accept', 'video/*' );
+	        	break;
+
+	        	case 'activity_audio':
+	        		form.find( '.youzify-upload-attachments' ).attr( 'accept', 'audio/*' );
+	        	break;
+
+	        	case 'activity_file':
+	        		form.find( '.youzify-upload-attachments' ).removeAttr( 'accept' );
+	        	break;
+
+	        	case 'activity_poll':
+
+		        	// Call Poll JS
+		        	if ( ! load_wall_polls_js ) {
+	       				 $( '<script/>', { rel: 'text/javascript', src: Youzify.assets + 'js/youzify-polls.min.js' } ).appendTo( 'head' );
+		        		load_wall_polls_js = true;
+		        	}
+
+	        	break;
+
+	        	default:
+	        		form.find( '.youzify-upload-attachments' ).attr( 'accept', 'image/*' );
+		        	break;
+
 	        }
 
 	        // Show/Hide Upload Button

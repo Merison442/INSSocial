@@ -839,7 +839,7 @@ class Youzify_Activity_Form {
         switch ( $code ) {
 
             case 'empty_status':
-                return __( "Please type some text before posting.", 'youzify' );
+                return __( 'Please type some text before posting.', 'youzify' );
 
             case 'invalid_post_type':
                 return __( 'Invalid post type.', 'youzify' );

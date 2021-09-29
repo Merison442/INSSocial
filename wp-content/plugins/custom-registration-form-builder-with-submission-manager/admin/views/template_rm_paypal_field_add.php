@@ -9,7 +9,12 @@ if(defined('REGMAGIC_ADDON')) include_once(RM_ADDON_ADMIN_DIR . 'views/template_
  * This view generates the form for adding text type field to the form
  */
 
-$price_field_type = array("fixed" => __("Fixed",'custom-registration-form-builder-with-submission-manager'));
+$price_field_type = array(
+    "fixed" => __("Fixed",'custom-registration-form-builder-with-submission-manager'),
+    "multisel" => __("Multi-Select", 'custom-registration-form-builder-with-submission-manager'),
+    "dropdown" => __("Dropdown", 'custom-registration-form-builder-with-submission-manager'),
+    "userdef" => __("User Defined", 'custom-registration-form-builder-with-submission-manager')
+);
 
 $fixed_class = "class = 'rm_hidden_element'";
 $dd_class = "class = 'rm_hidden_element'";

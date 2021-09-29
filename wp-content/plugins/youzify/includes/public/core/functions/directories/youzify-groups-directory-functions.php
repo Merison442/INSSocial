@@ -164,6 +164,16 @@ function youzify_groups_directory_groups_per_page( $loop ) {
 add_filter( 'bp_after_has_groups_parse_args', 'youzify_groups_directory_groups_per_page' );
 
 /**
+ * Groups - Members List Args.
+ */
+add_filter( 'bp_after_group_has_members_parse_args', 'youzify_groups_members_list_args' );
+
+function youzify_groups_members_list_args( $loop ) {
+    $loop['per_page'] = 20;
+    return $loop;
+}
+
+/**
  * Groups Directory - Cards Class.
  */
 function youzify_groups_list_class() {

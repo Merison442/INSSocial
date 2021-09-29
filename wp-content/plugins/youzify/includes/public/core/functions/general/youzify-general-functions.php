@@ -675,6 +675,19 @@ function youzify_default_options() {
         'youzify_signup_register_btn_title'    => __( 'Sign Up', 'youzify' ),
         'youzify_signup_form_subtitle'         => __( 'Create New Account', 'youzify' ),
 
+        // Polls Settings
+        'yzap_poll_limit_voters'         => '3',
+        'yzap_poll_list_voters'          => 'on',
+        'yzap_poll_options_image_enable' => 'off',
+        'yzap_poll_poll_revote'         => 'on',
+        'yzap_poll_options_result'      => 'on',
+        'yzap_poll_options_redirection' => 'result',
+        'yzap_poll_options_limit'        => '5',
+        'yzap_poll_multi_options'        => 'on',
+        'yzap_poll_options_selection'    => 'single',
+        'yzap_poll_options_image'        => 'off',
+        'yzap_poll_options_image_enable' => 'on',
+
         // Limit Login Settings
         'youzify_enable_limit_login' => 'on',
         'youzify_membership_long_lockout_duration'  => 86400,

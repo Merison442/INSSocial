@@ -119,7 +119,7 @@ class Content
                 'Windows-1251', 'Windows-1252', 'Windows-1254', 'Windows-1256'
             );
 
-            $encoding_check = mb_detect_encoding($contents, $list, true);
+            $encoding_check = function_exists( 'mb_detect_encoding' ) ? mb_detect_encoding( $contents, $list, true ) : false;
             $encoding = ($encoding_check === false) ? "UTF-8" : $encoding_check;
 
             $metaTags = Content::getMetaTagsEncoding($contents, $encoding);
@@ -139,7 +139,9 @@ class Content
         if (isset($contents)) {
 
             $doc = new DOMDocument('1.0', 'utf-8');
-            @$doc->loadHTML( mb_convert_encoding( $contents, 'HTML-ENTITIES', 'UTF-8' ) );
+            $convert_encoding =  function_exists( 'mb_convert_encoding' ) ?  mb_convert_encoding( $contents, 'HTML-ENTITIES', 'UTF-8' ) :  htmlspecialchars_decode( utf8_decode( htmlentities( $contents, ENT_COMPAT, 'utf-8', false)));
+
+            @$doc->loadHTML( $convert_encoding );
 
             $metas = $doc->getElementsByTagName('meta');
 

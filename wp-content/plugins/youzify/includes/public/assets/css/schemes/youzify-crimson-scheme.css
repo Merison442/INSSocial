@@ -95,6 +95,8 @@
 .youzify-crimson-scheme .youzify-author .youzify-login,
 .youzify-crimson-scheme .pagination .current,
 .youzify-crimson-scheme .youzify-tab-title-box,
+.youzify-crimson-scheme .youzify-current-bg-color,
+.youzify-crimson-scheme .youzify-current-checked-bg-color:checked,
 .youzify-crimson-scheme .youzify-wall-file-post,
 .youzify-crimson-scheme .button.accept  {
     background: #f75d52;

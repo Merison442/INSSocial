@@ -24,6 +24,7 @@ function youzify_activity_action_wall_posts( $action, $activity ) {
 		case 'activity_photo':
 		case 'activity_video':
 		case 'activity_audio':
+		case 'activity_poll':
 		case 'activity_link':
 		case 'activity_share':
 		case 'activity_file':
@@ -216,12 +217,16 @@ function youzify_wall_modal( $args = false ) {
 	// item ID.
 	$content_function = $args['function'];
 
+	// Get Args
+	$params = isset( $args['item_id'] ) ? $args['item_id'] : $args['args'];
+
 	?>
+
 	<div id="youzify-modal">
 		<div class="youzify-wall-modal">
 			<div class="youzify-wall-modal-title"><?php if ( isset( $args['icon'] ) ) echo '<i class="' . $args['icon'] . '"></i>'; echo $args['title']; ?><i class="fas fa-times youzify-wall-modal-close youzify-modal-close-icon"></i></div>
 			<div class="youzify-wall-modal-content">
-				<?php $content_function( $args['item_id'] ); ?>
+				<?php $content_function( $params ); ?>
 			</div>
 		</div>
 	</div>

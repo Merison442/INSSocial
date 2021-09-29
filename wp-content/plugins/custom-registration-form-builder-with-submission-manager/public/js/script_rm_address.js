@@ -127,8 +127,8 @@ function rm_load_states(country,target_element_id,code,default_value){
                };
     if(country=="")
     {
-        //target_element.find("option:gt(0)").remove();
-        target_element.find("option").slice(0).remove();
+        target_element.find("option:gt(0)").remove();
+        //target_element.find("option").slice(0).remove();
         return;
     }
     jQuery.post(rm_ajax_url,
@@ -136,8 +136,8 @@ function rm_load_states(country,target_element_id,code,default_value){
                 function(resp){
                     resp = JSON.parse(resp);
                     if(typeof resp === 'object') {
-                        //target_element.find("option:gt(0)").remove();
-                        target_element.find("option").slice(0).remove();
+                        target_element.find("option:gt(0)").remove();
+                        //target_element.find("option").slice(0).remove();
                         jQuery.each(resp, function(i, item) {
                            
                             if(code!=1)

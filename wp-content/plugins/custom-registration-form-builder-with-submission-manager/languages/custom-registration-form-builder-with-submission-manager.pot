@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: RegistrationMagic Basic v1.0.0\n"
-"POT-Creation-Date: 2021-08-23 16:30+0530\n"
+"POT-Creation-Date: 2021-09-03 20:12+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: RegistrationMagic Support <support@registrationmagic.com>\n"
@@ -23,7 +23,9 @@ msgstr ""
 #: admin/class_rm_admin.php:163
 #, php-format
 msgid ""
-"For creating fixed price single product. <a target='_blank' class='rm-more' "
+"For creating fixed price single product. To allow users to select from a "
+"price list, or to enter their own price, please <a target='_blank' class='rm-"
+"more' href='%s'>Upgrade</a>. <a target='_blank' class='rm-more' "
 "href='%s'>More</a>"
 msgstr ""
 
@@ -61,9 +63,9 @@ msgstr ""
 #: admin/class_rm_admin.php:176
 #: admin/views/template_rm_form_publish_info.php:16
 #: admin/views/template_rm_form_settings.php:105
-#: admin/views/template_rm_formflow_publish.php:24
-#: admin/views/template_rm_formflow_publish.php:70
-#: admin/views/template_rm_formflow_publish.php:125
+#: admin/views/template_rm_formflow_publish.php:33
+#: admin/views/template_rm_formflow_publish.php:82
+#: admin/views/template_rm_formflow_publish.php:137
 #: includes/class_rm_ui_strings.php:3062
 msgid "Copy"
 msgstr ""
@@ -575,7 +577,7 @@ msgstr ""
 #: admin/views/template_rm_form_view_sett.php:106
 #: admin/views/template_rm_login_advanced.php:238
 #: admin/views/template_rm_login_analytics.php:210
-#: admin/views/template_rm_login_email_temp.php:32
+#: admin/views/template_rm_login_email_temp.php:33
 #: admin/views/template_rm_login_field_add.php:87
 #: admin/views/template_rm_login_integrations.php:36
 #: admin/views/template_rm_login_recovery.php:43
@@ -596,7 +598,7 @@ msgstr ""
 #: admin/views/template_rm_options_user.php:48
 #: admin/views/template_rm_options_user_privacy.php:36
 #: admin/views/template_rm_options_user_privacy.php:64
-#: admin/views/template_rm_paypal_field_add.php:63
+#: admin/views/template_rm_paypal_field_add.php:68
 #: admin/views/template_rm_primary_field_add.php:105
 #: admin/views/template_rm_user_edit.php:38
 #: admin/views/template_rm_user_manager.php:144
@@ -2654,73 +2656,87 @@ msgstr ""
 msgid "Form Dashboard"
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:19
+#: admin/views/template_rm_formflow_publish.php:22
 msgid "Publish inside a page or post"
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:20
-msgid ""
-"The most common method. Copy this shortcode and paste it inside a page or "
-"post where you want to display the form."
+#: admin/views/template_rm_formflow_publish.php:24
+msgid "<b>For Classic Editor</b>"
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:30
+#: admin/views/template_rm_formflow_publish.php:25
+msgid ""
+"Paste this code snippet inside your content where you wish to publish this "
+"form."
+msgstr ""
+
+#: admin/views/template_rm_formflow_publish.php:28
+msgid "<b>For Block Editor</b>"
+msgstr ""
+
+#: admin/views/template_rm_formflow_publish.php:29
+msgid ""
+"Create a new Shortcode Block and paste this code snippet inside the block's "
+"shortcode field."
+msgstr ""
+
+#: admin/views/template_rm_formflow_publish.php:42
 msgid "Publish inside a Page Builder or Widget area"
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:33
+#: admin/views/template_rm_formflow_publish.php:45
 msgid ""
 "Find RegistrationMagic Form widget in your <b>Appearance/Widgets</b> "
 "section. Drag it to the widget area where you wish to display the form. "
 "Select the form to display in Widget settings and save."
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:39
+#: admin/views/template_rm_formflow_publish.php:51
 msgid "Publish using embed code"
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:49
+#: admin/views/template_rm_formflow_publish.php:61
 msgid "Publish a Directory of users who submitted this form"
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:50
+#: admin/views/template_rm_formflow_publish.php:62
 msgid ""
 "Displays a directory of all the users who have submitted this form. Only "
 "users with WordPress account will be displayed."
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:66
+#: admin/views/template_rm_formflow_publish.php:78
 msgid "Create a user area on your site"
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:67
+#: admin/views/template_rm_formflow_publish.php:79
 msgid "This shortcode renders a comprehensive user specific area on your site."
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:83
+#: admin/views/template_rm_formflow_publish.php:95
 msgid "Display the form in a sliding popup"
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:84
+#: admin/views/template_rm_formflow_publish.php:96
 msgid ""
 "Click the star to activate the form in Magic Popup. To remove the form, "
 "select another form."
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:89
+#: admin/views/template_rm_formflow_publish.php:101
 msgid ""
 " Click above star to set this form as default registration form. The default "
 "registration form appears in the Magic Popup on front-end."
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:96
+#: admin/views/template_rm_formflow_publish.php:108
 #, php-format
 msgid ""
 "Magic pop-up is currently disabled. Please go to <a href=\"%s\" target="
 "\"_blank\">Global Settings >> Magic Popup Button</a> to enable it."
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:106
+#: admin/views/template_rm_formflow_publish.php:118
 msgid ""
 "When you use forms which do not create WordPress user accounts, like a "
 "contact or an enquiry form, users still have option to login on your site's "
@@ -2732,7 +2748,7 @@ msgid ""
 "used once and allows normal access to RegistrationMagic's user account area."
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:107
+#: admin/views/template_rm_formflow_publish.php:119
 #, php-format
 msgid ""
 "OTP works seamlessly through Login Widget in <a href=\"%s\" target=\"_blank"
@@ -2741,28 +2757,28 @@ msgid ""
 "Button</a>"
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:120
+#: admin/views/template_rm_formflow_publish.php:132
 msgid "Publish a login form"
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:121
+#: admin/views/template_rm_formflow_publish.php:133
 msgid ""
 "Login system is built into RegistrationMagic. To display a login box on any "
 "page, post or widget use this code."
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:133
+#: admin/views/template_rm_formflow_publish.php:145
 msgid "Display Login Button anywhere on your site"
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:134
+#: admin/views/template_rm_formflow_publish.php:146
 msgid ""
 "<strong>RegistrationMagic Login Button Widget</strong> now allows you to "
 "publish Login/ Logout button anywhere on your site. It provides you option "
 "to define your own labels and login/ logout behaviour."
 msgstr ""
 
-#: admin/views/template_rm_formflow_publish.php:135
+#: admin/views/template_rm_formflow_publish.php:147
 #, php-format
 msgid "<a href=\"%s\">Go To Widgets Now</a>"
 msgstr ""
@@ -3229,52 +3245,52 @@ msgstr ""
 msgid "Email Templates"
 msgstr ""
 
-#: admin/views/template_rm_login_email_temp.php:22
+#: admin/views/template_rm_login_email_temp.php:23
 msgid "Emails to User"
 msgstr ""
 
-#: admin/views/template_rm_login_email_temp.php:23
-#: admin/views/template_rm_login_email_temp.php:28
+#: admin/views/template_rm_login_email_temp.php:24
+#: admin/views/template_rm_login_email_temp.php:29
 msgid "Failed Login Attempt"
 msgstr ""
 
-#: admin/views/template_rm_login_email_temp.php:23
+#: admin/views/template_rm_login_email_temp.php:24
 msgid ""
 "The contents of the email sent to the user when their username or email is "
 "used during a failed login attempt."
 msgstr ""
 
-#: admin/views/template_rm_login_email_temp.php:24
+#: admin/views/template_rm_login_email_temp.php:25
 #: includes/class_rm_ui_strings.php:1383
 msgid "One Time Password"
 msgstr ""
 
-#: admin/views/template_rm_login_email_temp.php:24
+#: admin/views/template_rm_login_email_temp.php:25
 msgid ""
 "The contents of the email sent to the user with OTP during 2FA and non user "
 "account based logins."
 msgstr ""
 
-#: admin/views/template_rm_login_email_temp.php:25
+#: admin/views/template_rm_login_email_temp.php:26
 msgid "Password Reset"
 msgstr ""
 
-#: admin/views/template_rm_login_email_temp.php:27
+#: admin/views/template_rm_login_email_temp.php:28
 msgid "Emails to Admin"
 msgstr ""
 
-#: admin/views/template_rm_login_email_temp.php:28
+#: admin/views/template_rm_login_email_temp.php:29
 msgid ""
 "Define the contents of the notification email sent to admin whenever "
 "RegistrationMagic detects a failed login attempt."
 msgstr ""
 
-#: admin/views/template_rm_login_email_temp.php:29
+#: admin/views/template_rm_login_email_temp.php:30
 #: services/class_rm_email_service.php:623
 msgid "IP Blocked"
 msgstr ""
 
-#: admin/views/template_rm_login_email_temp.php:29
+#: admin/views/template_rm_login_email_temp.php:30
 msgid ""
 "Define the contents of the notification email sent to the admin whenever "
 "RegistrationMagic blocks an IP based on security configuration set in its "
@@ -4401,12 +4417,25 @@ msgid ""
 "There was a problem and the process did not complete. Please try again later."
 msgstr ""
 
-#: admin/views/template_rm_paypal_field_add.php:12
+#: admin/views/template_rm_paypal_field_add.php:13
 #: includes/class_rm_ui_strings.php:1106
 msgid "Fixed"
 msgstr ""
 
-#: admin/views/template_rm_paypal_field_add.php:72
+#: admin/views/template_rm_paypal_field_add.php:14
+msgid "Multi-Select"
+msgstr ""
+
+#: admin/views/template_rm_paypal_field_add.php:15
+msgid "Dropdown"
+msgstr ""
+
+#: admin/views/template_rm_paypal_field_add.php:16
+#: includes/class_rm_ui_strings.php:1115
+msgid "User Defined"
+msgstr ""
+
+#: admin/views/template_rm_paypal_field_add.php:77
 #: admin/views/template_rm_paypal_field_manager.php:96
 msgid "Unlock multiple pricing configurations by upgrading"
 msgstr ""
@@ -9088,10 +9117,6 @@ msgstr ""
 
 #: includes/class_rm_ui_strings.php:1112
 msgid "DropDown"
-msgstr ""
-
-#: includes/class_rm_ui_strings.php:1115
-msgid "User Defined"
 msgstr ""
 
 #: includes/class_rm_ui_strings.php:1118
@@ -14699,41 +14724,41 @@ msgstr ""
 msgid "Please wait..."
 msgstr ""
 
-#: public/class_rm_public.php:159
+#: public/class_rm_public.php:160
 msgid "Hours"
 msgstr ""
 
-#: public/class_rm_public.php:160
+#: public/class_rm_public.php:161
 msgid "Minutes"
 msgstr ""
 
-#: public/class_rm_public.php:161
+#: public/class_rm_public.php:162
 msgid "Seconds"
 msgstr ""
 
-#: public/class_rm_public.php:162
+#: public/class_rm_public.php:163
 msgid "Days"
 msgstr ""
 
-#: public/class_rm_public.php:163
+#: public/class_rm_public.php:164
 msgid "Months"
 msgstr ""
 
-#: public/class_rm_public.php:164
+#: public/class_rm_public.php:165
 msgid "Years"
 msgstr ""
 
-#: public/class_rm_public.php:487 public/class_rm_public.php:494
+#: public/class_rm_public.php:488 public/class_rm_public.php:495
 msgid "No such user exists"
 msgstr ""
 
-#: public/class_rm_public.php:503
+#: public/class_rm_public.php:504
 msgid ""
 "Verification link has been sent on your registered email account. Please "
 "check."
 msgstr ""
 
-#: public/class_rm_public.php:506
+#: public/class_rm_public.php:507
 msgid "Incorrect security token. Please try after some time."
 msgstr ""
 
@@ -14961,4 +14986,8 @@ msgstr ""
 
 #: services/class_rm_user_services.php:450
 msgid "Sign in with Facebook"
+msgstr ""
+
+#: services/class_rm_user_services.php:738
+msgid "Request denied"
 msgstr ""

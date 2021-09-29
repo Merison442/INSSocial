@@ -53,13 +53,11 @@ if (isset($data->twitter)) {
         $user_info = $connection->get('account/verify_credentials', array('include_email' => 'true'));
         unset($_SESSION['token']);
         unset($_SESSION['token_secret']);
-        $ajax_nonce = wp_create_nonce('rm-social-login-security');
         ?>
         <pre class="rm-pre-wrapper-for-script-tags"><script type="text/javascript" >
             var email = '<?php echo $user_info->email; ?>';
             var name = '<?php echo $user_info->name; ?>';
-            var security = '<?php echo $ajax_nonce; ?>';
-            handle_data(email, name,'twitter',security);
+            handle_data(email, name,'twitter');
         </script></pre> <?php
     }
 } 

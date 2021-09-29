@@ -5,7 +5,7 @@ Donate link: https://www.paypal.me/KaineLabs
 Requires at least: 4.9
 Requires PHP: 5.6
 Tested up to: 5.7
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -483,3 +483,5 @@ Reward Users with points for each wall post type and all the profile widgets fie
     Fix - Live Notification Notice.
     Fix - Instagram Widget Videos.
     Fix - Media Lightbox.
+= 1.1.1 - 2021-09-10 =
+Fix - Account Settings Bug.

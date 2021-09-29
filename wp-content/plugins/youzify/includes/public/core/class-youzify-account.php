@@ -1989,7 +1989,13 @@ class Youzify_Account {
                     break;
 
                 case 'array_text':
+
+                	// Get Field Value.
+                	$field_value = is_array( $field_value ) ? $field_value : array();
+
+                	// Sanitize Values.
                     $options[ $key ] = array_map( 'sanitize_text_field', $field_value );
+
                     break;
 
                 default:
