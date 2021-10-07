@@ -287,31 +287,35 @@ function youzify_default_options() {
         'youzify_wg_groups_display_title'    => 'on',
         'youzify_wg_instagram_display_title' => 'on',
         'youzify_wg_user_badges_display_title' => 'on',
+        'youzify_gamipress_wg_user_badges_display_title' => 'on',
+        'youzify_gamipress_wg_user_balance_display_title' => 'on',
         'youzify_wg_user_balance_display_title' => 'off',
         'youzify_wg_social_networks_display_title' => 'on',
 
         // Widget Titles
-        'youzify_wg_post_title'      => __( 'Post', 'youzify' ),
-        'youzify_wg_project_title'   => __( 'Project', 'youzify' ),
-        'youzify_wg_link_title'      => __( 'Link', 'youzify' ),
-        'youzify_wg_video_title'     => __( 'Video', 'youzify' ),
-        'youzify_wg_media_title'     => __( 'Media', 'youzify' ),
-        'youzify_wg_quote_title'     => __( 'Quote', 'youzify' ),
-        'youzify_wg_skills_title'    => __( 'Skills', 'youzify' ),
-        'youzify_wg_flickr_title'    => __( 'Flickr', 'youzify' ),
-        'youzify_wg_reviews_title'   => __( 'Reviews', 'youzify' ),
-        'youzify_wg_friends_title'   => __( 'Friends', 'youzify' ),
-        'youzify_wg_groups_title'    => __( 'Groups', 'youzify' ),
-        'youzify_wg_aboutme_title'   => __( 'About Me', 'youzify' ),
-        'youzify_wg_services_title'  => __( 'Services', 'youzify' ),
-        'youzify_wg_portfolio_title' => __( 'Portfolio', 'youzify' ),
-        'youzify_wg_instagram_title' => __( 'Instagram', 'youzify' ),
-        'youzify_wg_user_tags_title' => __( 'User Tags', 'youzify' ),
-        'youzify_wg_slideshow_title' => __( 'Slideshow', 'youzify' ),
-        'youzify_wg_rposts_title'    => __( 'Recent Posts', 'youzify' ),
-        'youzify_wg_sn_title'        => __( 'Keep In Touch', 'youzify' ),
-        'youzify_wg_user_badges_title'  => __( 'User Badges', 'youzify' ),
-        'youzify_wg_user_balance_title' => __( 'User Balance', 'youzify' ),
+        'youzify_wg_post_title'                   => __( 'Post', 'youzify' ),
+        'youzify_wg_project_title'                => __( 'Project', 'youzify' ),
+        'youzify_wg_link_title'                   => __( 'Link', 'youzify' ),
+        'youzify_wg_video_title'                  => __( 'Video', 'youzify' ),
+        'youzify_wg_media_title'                  => __( 'Media', 'youzify' ),
+        'youzify_wg_quote_title'                  => __( 'Quote', 'youzify' ),
+        'youzify_wg_skills_title'                 => __( 'Skills', 'youzify' ),
+        'youzify_wg_flickr_title'                 => __( 'Flickr', 'youzify' ),
+        'youzify_wg_reviews_title'                => __( 'Reviews', 'youzify' ),
+        'youzify_wg_friends_title'                => __( 'Friends', 'youzify' ),
+        'youzify_wg_groups_title'                 => __( 'Groups', 'youzify' ),
+        'youzify_wg_aboutme_title'                => __( 'About Me', 'youzify' ),
+        'youzify_wg_services_title'               => __( 'Services', 'youzify' ),
+        'youzify_wg_portfolio_title'              => __( 'Portfolio', 'youzify' ),
+        'youzify_wg_instagram_title'              => __( 'Instagram', 'youzify' ),
+        'youzify_wg_user_tags_title'              => __( 'User Tags', 'youzify' ),
+        'youzify_wg_slideshow_title'              => __( 'Slideshow', 'youzify' ),
+        'youzify_wg_rposts_title'                 => __( 'Recent Posts', 'youzify' ),
+        'youzify_wg_sn_title'                     => __( 'Keep In Touch', 'youzify' ),
+        'youzify_wg_user_badges_title'            => __( 'User Badges', 'youzify' ),
+        'youzify_gamipress_wg_user_badges_title'  => __( 'Gamipress User Badges', 'youzify' ),
+        'youzify_wg_user_balance_title'           => __( 'User Balance', 'youzify' ),
+        'youzify_gamipress_wg_user_balance_title' => __( 'Gamipress User Balance', 'youzify' ),
 
         // Social Networks
         'youzify_wg_sn_bg_style'   => 'radius',
@@ -320,6 +324,8 @@ function youzify_default_options() {
 
         // Badges.
         'youzify_wg_max_user_badges_items' => 12,
+        // Badges.
+        'youzify_gamipress_wg_max_user_badges_items' => 12,
 
         // Skills
         'youzify_wg_max_skills' => 5,
@@ -745,6 +751,34 @@ function youzify_default_options() {
         );
 
         $default_options = youzify_array_merge( $default_options, $mycred_options );
+    }
+
+    if ( youzify_is_gamipress_installed() ) {
+
+        // Options.
+        $gamipress_options = array(
+            'youzify_enable_gamipress' => 'on',
+            'youzify_badges_tab_icon' => 'fas fa-trophy',
+            'youzify_enable_cards_gamipress_badges' => 'on',
+            'youzify_wg_max_card_user_badges_items' => 4,
+            'youzify_gamipress-history_tab_icon' => 'fas fa-history',
+            'youzify_author_box_max_user_badges_items' => 3,
+            'youzify_enable_author_box_gamipress_badges' => 'on',
+            'youzify_gamipress_badges_tab_title' => __( 'Badges', 'youzify' ),
+            'youzify_ctabs_gamipress-history_thismonth_icon' => 'far fa-calendar-alt',
+            'youzify_ctabs_leaderboard_month_icon' => 'far fa-calendar-alt',
+            'youzify_ctabs_gamipress-history_today_icon' => 'fas fa-calendar-check',
+            'youzify_ctabs_leaderboard_today_icon' => 'fas fa-calendar-check',
+            'youzify_ctabs_gamipress-history_gamipress-history_icon' => 'fas fa-calendar',
+            'youzify_ctabs_gamipress-history_thisweek_icon' => 'fas fa-calendar-times',
+            'youzify_ctabs_leaderboard_week_icon' => 'fas fa-calendar-plus',
+            'youzify_ctabs_gamipress-history_yesterday_icon' => 'fas fa-calendar-minus',
+            'youzify_ctabs_achievements_all_icon' => 'fas fa-award',
+            'youzify_ctabs_achievements_earned_icon' => 'fas fa-user-check',
+            'youzify_ctabs_achievements_unearned_icon' => 'fas fa-user-times',
+        );
+
+        $default_options = youzify_array_merge( $default_options, $gamipress_options );
     }
 
     return apply_filters( 'youzify_default_options', $default_options );
@@ -1625,6 +1659,32 @@ function youzify_is_mycred_active() {
     }
 
     return apply_filters( 'youzify_is_mycred_active', 'on' == youzify_option( 'youzify_enable_mycred', 'on' ) ? true : false );
+
+}
+
+/**
+ * Check is GamiPress is Installed & Active.
+ */
+function youzify_is_gamipress_active() {
+
+    if ( ! youzify_is_gamipress_installed() ) {
+        return false;
+    }
+
+    return apply_filters( 'youzify_is_gamipress_active', 'on' == youzify_option( 'youzify_enable_gamipress', 'on' ) ? true : false );
+
+}
+
+/**
+ * Check is GamiPress is Installed & Active.
+ */
+function youzify_is_gamipress_installed() {
+
+    if ( ! defined( 'GAMIPRESS_VER' ) )  {
+        return false;
+    }
+
+    return true;
 
 }
 

@@ -322,8 +322,16 @@
 
 		        	// Call Poll JS
 		        	if ( ! load_wall_polls_js ) {
-	       				 $( '<script/>', { rel: 'text/javascript', src: Youzify.assets + 'js/youzify-polls.min.js' } ).appendTo( 'head' );
+
+		        		// if ( ! jQuery.isFunction( $.fn.sortable ) ) {
+		        			// console.log('hhhh');
+	       					// $( '<script/>', { rel: 'text/javascript', src: Youzify_Wall.wp_url + '/wp-includes/js/jquery/ui/sortable.min.js' } ).appendTo( 'html' );
+		        		// }
+
+	       				$( '<script/>', { rel: 'text/javascript', src: Youzify.assets + 'js/youzify-polls.min.js' } ).appendTo( 'head' );
+
 		        		load_wall_polls_js = true;
+
 		        	}
 
 	        	break;

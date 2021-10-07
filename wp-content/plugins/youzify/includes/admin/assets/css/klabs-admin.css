@@ -2919,6 +2919,15 @@ p.youzify-no-content,
     display: none;
 }
 
+span.youzify-widget-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    background: #eaeaea;
+    color: #1b1b1b;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin-left: 7px;
+}
 
 /**
  * Add-ons

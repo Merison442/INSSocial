@@ -5,7 +5,7 @@ Donate link: https://www.paypal.me/KaineLabs
 Requires at least: 4.9
 Requires PHP: 5.6
 Tested up to: 5.7
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -15,9 +15,9 @@ The best BuddyPress plugin for building online communities, user profile, social
 
 **Welcome to a New Era of WordPress Communities and User Profiles!**
 
-<blockquote><a href="https://1.envato.market/LGqEL">[LIMITED TIME OFFER] Get Your Lifetime Youzify Pro Version at CodeCanyon for only 49$ BEFORE THE PRICE GOES UP!</a></blockquote>
+<blockquote><a href="https://1.envato.market/LGqEL">[ATTENTION] Youzify PRO Price is GOING UO By 31 October 2021. Get Your Lifetime Youzify Pro Version at CodeCanyon for only 49$ BEFORE THE PRICE GOES UP!</a></blockquote>
 
-<a href="https://youzify.com/">[Live Demo] Check out our live demo, it's a whole new world!</a>
+<a href="https://youzify.com/">[Live Demo] Check out our live demo, it's a whole new world!</a>
 
 <a href="https://1.envato.market/LGqEL">Youzify Pro</a> | <a href="https://youzify.com/buddypress-addons/">BuddyPress Add-Ons</a> | <a href="https://kainelabs.ticksy.com/articles/">Documentation</a> | <a href="https://kainelabs.ticksy.com/">Premium Support</a>
 
@@ -74,6 +74,7 @@ Every website needs a community. **Every website needs Youzify**!
 	<li><strong>[ PREMIUM ]</strong> Tag Friends</li>
 	<li><strong>[ PREMIUM ]</strong> Sticky Posts</li>
 	<li><strong>[ PREMIUM ]</strong> Comments GIFs</li>
+	<li><strong>[ PREMIUM ]</strong> Advanced Polls</li>
 	<li><strong>[ PREMIUM ]</strong> Comments Attachments</li>
 	<li><strong>[ PREMIUM ]</strong> Messages Attachments</li>
 	<li><strong>[ PREMIUM ]</strong> Live Notifications</li>
@@ -177,6 +178,9 @@ Every website needs a community. **Every website needs Youzify**!
 	<li>Address Box</li>
 	<li>Website Box</li>
 	<li>Phone Number Box</li>
+	<li><strong>[ PREMIUM ]</strong> GamiPress Badges Widget</li>
+	<li><strong>[ PREMIUM ]</strong> GamiPress Balance Widget</li>
+	<li><strong>[ PREMIUM ]</strong> Unlimited Custom Widgets ( Shortcode or HTML Code )</li>
 	<li><strong>[ PREMIUM ]</strong> Unlimited Custom Widgets ( Shortcode or HTML Code )</li>
 </ul>
 
@@ -213,6 +217,7 @@ Every website needs a community. **Every website needs Youzify**!
 	<li>MailChimp Integration</li>
 	<li>Mailster Newsletter Integration</li>
 	<li>Giphy Integration</li>
+	<li><strong>[ PREMIUM ]</strong> GamiPress Integration</li>
 </ul>
 
 == __ / +20 WordPress Widgets ==
@@ -393,6 +398,15 @@ Gain access to all Youzer extensions with a single purchase and unleash the powe
 = **<a href="https://www.youzify.com/downloads/buddypress-membership-restrictions/?utm_source=wordpress-repository&utm_medium=pro-addons">BuddyPress Membership Restrictions</a>** =
 Restrict BuddyPress community features and content for visitors, members, and by user role to control what your users get exclusive access to.
 
+= **<a href="https://youzify.com/downloads/wordpress-frontend-posting-plugin/?utm_source=wordpress-repository&utm_medium=pro-addons">WordPress Frontend Post Submission</a>** =
+Create advanced user-friendly posting forms to allow users to create and edit posts from the frontend without visiting the admin area.
+
+= **<a href="https://youzify.com/downloads/buddypress-advanced-members-search/?utm_source=wordpress-repository&utm_medium=pro-addons">BuddyPress Advanced Members Search</a>** =
+Allow members or visitors to perform advanced searches on your website members with the ability to limit searches number or restrict forms by role.
+
+= **<a href="https://youzify.com/downloads/buddypress-amazon-s3-integration/?utm_source=wordpress-repository&utm_medium=pro-addons">BuddyPress Amazon S3</a>** =
+Rest easy knowing your customers will always have reliable and fast delivery of the community media files, avatars, covers and save space on your server.
+
 = **<a href="https://www.youzify.com/downloads/buddypress-member-types/?utm_source=wordpress-repository&utm_medium=pro-addons">BuddyPress Member Types</a>** =
 Member Types plugin is the best way to create and manage unlimited member types easily, and get a separate directory for each member type.
 
@@ -483,5 +497,11 @@ Reward Users with points for each wall post type and all the profile widgets fie
     Fix - Live Notification Notice.
     Fix - Instagram Widget Videos.
     Fix - Media Lightbox.
+
 = 1.1.1 - 2021-09-10 =
 Fix - Account Settings Bug.
+
+= 1.1.2 - 2021-10-06 =
+Fix - Media Links Not Working.
+Fix - Hide Duplicated BBpress Activity Filters.
+Fix - Profile Quote Widget Breaks.

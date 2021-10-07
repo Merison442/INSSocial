@@ -15,7 +15,7 @@ class Youzify_Admin {
 		add_action( 'init', array( $this, 'init' ) );
 
 		// Show Change Log on Activation
-		add_action( 'admin_notices', array( $this, 'show_activation_change_log' ) );
+		add_action( 'admin_notices', array( $this, 'show_activation_change_log' ), 100 );
 
 
         // Add Plugin Links.
@@ -593,6 +593,14 @@ class Youzify_Admin {
 		   	    'title' => __( 'MyCRED Settings', 'youzify' ),
 		    );
 		}
+
+		// Add GamiPress Settings.
+   		$tabs['gamipress'] = array(
+	   	    'icon'  => 'fas fa-trophy',
+	   	    'id'    => 'gamipress',
+	   	    'function' => 'youzify_gamipress_settings',
+	   	    'title' => __( 'GamiPress Settings', 'youzify' ),
+	    );
 
 		// Filter.
 		$tabs = apply_filters( 'youzify_panel_general_settings_menus', $tabs );
@@ -1414,78 +1422,79 @@ class Youzify_Admin {
 	 */
 	function show_activation_change_log() {
 
-	    // Check transient, if available display notice.
-		if ( get_transient( 'youzify-change-log-notice-' . YOUZIFY_VERSION ) ) {
 
+		$id = 'youzify-change-log-notice-' . YOUZIFY_VERSION;
+
+	    if ( isset( $_GET['youzify-dismiss-offer-notice'] ) ) {
+	        youzify_update_option( $_GET['youzify-dismiss-offer-notice'], 1 );
+	    }
+
+		if ( youzify_option( $id ) ) {
+			return;
+		}
 
 	    // Get PRO Tag.
 	    $pro = ! youzify_is_feature_available() ? '<span class="youzify-log-pro">PRO</span>' : '';
 
 	    // Get Log Details.
 	    $logs = array(
+	    	// array(
+		    //     'log' => array(
+		    //         'fix' => array(
+		    //             'GamiPress & MyCRED Conflict',
+		    //         ),
+		    //     ),
+	    	// ),
 	    	array(
 		        'title' => 'Youzify ' . YOUZIFY_VERSION,
+		        // 'title' => 'Youzify 3.2.4',
 		        'log' => array(
+		            'announce' => array(
+		                'Finally!! We Released The Best <a target="_blank" href="https://youzify.com/downloads/wordpress-frontend-posting-plugin/"><strong>WordPress - Frontend Posting Plugin</strong></a> in the market.<br> Use <strong>FESLAUNCH30 </strong> to save 30% OFF. <strong>Ends 09 October 2021</strong>.',
+		                'The new addon <strong>Youzify - Advanced Albums</strong> is coming up next month ( October 2021 ).',
+		                "We are working currently on the most requested addon of all time: <strong>Youzify - Live Chat</strong>, so you can expect it to be ready before the end of the year and as always with the best <strong>Functionalities, User Expreience, Performance and Design.</strong> 😎"
+		            ),
 		            'new' => array(
-		                $pro . 'Advanced Polls System.',
-		                $pro . 'Activity Poll Post Type.',
-		                $pro . 'Allow users to select multiple vote options.',
-		                $pro . 'Enbale / Disable Polls Images.',
-		                $pro . 'Force Polls Images Upload.',
-		                $pro . 'Limit Poll Options.',
-		                $pro . 'Set Default Poll Options Mode ( Single / Multiple ).',
-		                $pro . 'Enable / Disable Voting Results Visibility.',
-		                $pro . 'Enable / Disable Poll Voters.',
-		                $pro . 'Enbale / Disable Polls Revoting.',
-		                $pro . 'Set Maximum Voters Number to Show',
-		                $pro . 'Set Default PolL Post View ( Form or Results )',
-		                $pro . 'Activity Stream 3 Columns Layout.',
-		                $pro .'Poll Form Settings - Poll Options from Youzify Panel > General Settings > Wall Setting >  Polls Form Settings.',
-		                $pro .'Poll Post  Settings - Poll Options from Youzify Panel > General Settings > Wall Setting >  Polls Post Settings.',
+		                $pro . 'GamiPress Integration',
 		            ),
 		            'fix' => array(
-		                'Pinned Posts Shows up for all users.',
-		                'Account Settings Bug.',
+		                // $pro .'Live Notifications not working in some sites.',
+		                'Profile Quote Widget Breaks.',
+		                'Profile Media Tabs Slugs.',
+		                'Hide Duplicated BBpress Activity Filters.',
 		            ),
 		        ),
-	    	),
-	    	array(
-		        'title' => 'Youzify Previous Version',
-		        'log' => array(
-		            'new' => array(
-		                'Members Directory Design.',
-		                'Groups Directory Design.',
-		                'Activity with Left Sidebar Layout.',
-		                $pro . 'Activity Stream 3 Columns Layout.',
-		                'New Option - Change Activity Layout from Youzify Panel > General Settings > Wall Settings.',
-		                'New Option - Set Members Direcoty Header Options from Youzify Panel > General Settings > Members Directory Settings.',
-		                'New Option - Set Groups Direcoty Header Options from Youzify Panel > General Settings > Members Directory Settings.',
-		                'Instagram Widget Videos Support.',
-		            ),
-		            'fix' => array(
-		                'Live Notification Notice.',
-		                'Media Shortcode Lightbox.',
-		            ),
-		        ),
-
 	    	)
 	    );
 
 	    // Get Offer Details
 	    $offer = array(
-	        'label' => 'Once in a lifetime offer',
-	        'image' => 'https://youzify.com/wp-content/uploads//edd/2021/08/buddypress-advanced-members-search.png',
-	        'title' => '7-Day All-Access Pass ( HUGE SAVINGS )',
-	        'description' => 'Ends 14 September 2021,s 23.59GMT',
-	        'button' => 'Learn More',
-	        'link' => 'https://youzify.com/downloads/buddypress-advanced-members-search/?utm_campaign=changelog' . YOUZIFY_VERSION . '&utm_medium=notice&utm_source=client-site&utm_content=learn-more'
+	        'label' => 'Use "FESLAUNCH30" to SAVE 30% OFF. Ends 09 October.',
+	        'image' => 'https://youzify.com/wp-content/uploads//edd/2021/09/buddypress-frontend-subission.png',
+	        'title' => 'WordPress – Frontend Post Submission',
+	        'description' => 'Allow your website users to create, edit and delete posts from the site frontend also you can allow visitors to submit guest blog posts and other content on your WordPress site without logging into the admin area.',
+	        'features' => array(
+	        	'Frontend Posting, Editing, Deletio with a Beautiful Design and UX.',
+	        	'User-friendly Forms Builder with Drag & Drop.',
+	        	'Create Unlimited Frontend Posting Forms',
+	        	'Advanced BuddyPress Settings',
+	        	'Create Unlimited Form Custom Fields',
+	        	'Create Unlimited Advanced Upload Fields',
+	        	'Powerful Real-time Shortcodes',
+	        	'Allow Anonymous Users Posting',
+	        	'Advanced Detailed Styling Options',
+	        	'Limit number of posts by time and by user role and for each form.',
+	        	'And Much Much More...',
+	        ),
+	        'button' => 'View All Features',
+	        'link' => 'https://youzify.com/downloads/wordpress-frontend-posting-plugin/?utm_campaign=changelog' . YOUZIFY_VERSION . '&utm_medium=notice&utm_source=client-site&utm_content=learn-more'
 	    );
 
 
         // Get Coupon Details.
         $coupon = array(
         	'label' => 'Special Offer',
-        	'description' => 'Use Coupon <strong>AUG20</strong> to save <strong>20% OFF</strong> on any of our addons.',
+        	'description' => 'Use Coupon <strong>FESLAUNCH30 </strong> to save <strong>30% OFF</strong> on any of our addons.',
         	'ends' => 'Ends 21 August at 23.59 GMT.',
         	'button' => 'View all Addons',
         	'date' => '21-08-2021',
@@ -1495,9 +1504,88 @@ class Youzify_Admin {
 	        ?>
 
 	        <style type="text/css">
+			.yz-shake-me {
+				display: inline-block;
+				margin: 0;
+				position: relative;
+				top: -2px;
+				margin-right: 10px;
+			    transform: translate3d(0, 0, 0);
+			    backface-visibility: hidden;
+			    animation-name: bounceRight;
+			    animation-duration: 1s;
+			    animation-iteration-count: infinite;
+			    animation-timing-function: linear;
+			}
+
+    /* right bounce */
+    @-webkit-keyframes bounceRight {
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+      }
+      40% {
+        -webkit-transform: translateX(-20px);
+        transform: translateX(-20px);
+      }
+      60% {
+        -webkit-transform: translateX(-15px);
+        transform: translateX(-15px);
+      }
+    }
+    @-moz-keyframes bounceRight {
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateX(0);
+      }
+      40% {
+        transform: translateX(-30px);
+      }
+      60% {
+        transform: translateX(-15px);
+      }
+    }
+    @keyframes bounceRight {
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+      40% {
+        -ms-transform: translateX(-20px);
+        transform: translateX(-20px);
+      }
+      60% {
+        -ms-transform: translateX(-15px);
+        transform: translateX(-15px);
+      }
+    }
+
+				.youzify-offer-features {
+				    margin-top: 25px;
+				}
 
 		        .youzify-log-content {
 				    margin-bottom: 35px;
+				}
+
+				.youzify-log-item a {
+					display: contents;
+				}
+
+				.youzify-log-item strong {
+					display: contents;
+					font-weight: 700;
 				}
 
 				.youzify-log-content:last-of-type {
@@ -1505,14 +1593,15 @@ class Youzify_Admin {
 				}
 
 	            .youzify-log-message {
-
 	                display: flex;
 	            }
+
 	            .youzify-log-offers {
 	                width: 35%;
 	                padding: 0 60px;
 	                margin-left: auto;
-	                background: url(https://youzify.com/wp-content/uploads/2021/01/youzify_decor.svg) #f0f0f1;
+	                /*background: url(https://youzify.com/wp-content/uploads/2021/01/youzify_decor.svg) #f0f0f1;*/
+	                background: url(https://youzify.com/wp-content/uploads/2021/01/youzify_decor.svg),linear-gradient(to right,#ffeb3b,#f44336) !important;
 	                background-size: cover;
 	            }
 
@@ -1530,16 +1619,16 @@ class Youzify_Admin {
 	            }
 
 	            .youzify-log-offers .youzify-offer-label {
-	                display: block;
-	                background: #ffeb3b;
-	                font-weight: 600;
-	                text-align: center;
-	                padding: 12px;
-	                border-radius: 5px;
-	                top: 0;
-	                left: 0;
-	                font-size: 11px;
-	                text-transform: uppercase;
+					display: block;
+				    background: #ffeb3b;
+				    text-align: center;
+				    padding: 12px;
+				    border-radius: 5px;
+				    top: 0;
+				    left: 0;
+				    font-size: 14px;
+				    text-transform: uppercase;
+				    font-weight: 600;
 	            }
 
 	            .youzify-log-offers .youzify-offer-details {
@@ -1552,29 +1641,52 @@ class Youzify_Admin {
 	            }
 
 	            .youzify-log-offers .youzify-offer-title a {
-	                    text-decoration: none;
-	                color: #000;
-	                font-weight: 600;
-	                margin-bottom: 10px;
-	                display: block;
+	                text-decoration: none;
+				    color: #000;
+				    font-weight: 600;
+				    margin-bottom: 10px;
+				    display: block;
+				    text-align: center;
+				    font-size: 18px;
+	            }
+
+	            .youzify-offer-feature {
+				    display: flex;
+	            	margin-bottom: 15px;
+				    align-items: center;
+	            }
+
+	            .youzify-offer-feature span {
+					width: 30px;
+					height: 30px;
+					color: #000;
+					margin-right: 10px;
+					line-height: 30px;
+					background: #ffd8be;
+					border-radius: 100%;
 	            }
 
 	            .youzify-log-offers .youzify-offer-desc {
-	                font-size: 13px;
-	                color: #898989;
+	                    font-size: 15px;
+				    color: #898989;
+				    text-align: center;
+				    margin-top: 15px;
+				    line-height: 24px;
 	            }
 
 	            .youzify-log-offers .youzify-offer-button a {
-	                margin-top: 15px;
-	                display: inline-block;
-	                background: #ffeb3b;
-	                font-size: 14px;
-	                font-weight: 600;
-	                color: #000;
-	                text-decoration: none;
-	                line-height: 45px;
-	                padding: 0 25px;
-	                border-radius: 5px;
+	                margin-top: 25px;
+				    display: block;
+				    background: #ffeb3b;
+				    font-size: 19px;
+				    font-weight: 600;
+				    color: #000;
+				    text-decoration: none;
+				    line-height: 60px;
+				    padding: 0 25px;
+				    border-radius: 5px;
+				    text-align: center;
+				    margin-top: 25px;
 	            }
 
 	            .youzify-log-title {
@@ -1612,6 +1724,7 @@ class Youzify_Admin {
 	                color: #000;
 	                line-height: 24px;
 	                background: #ffeb3b;
+	                min-width: 65px;
 	            }
 
 	            .youzify-logs {
@@ -1634,6 +1747,7 @@ class Youzify_Admin {
 	                margin-bottom: 12px;
 	                padding: 10px;
 	                border-radius: 5px;
+	                line-height: 24px;
 	            }
 
 	            .youzify-log-item:last-of-type {
@@ -1658,9 +1772,16 @@ class Youzify_Admin {
 	                background: #81d4fa;
 	            }
 
+	            .youzify-log-item .youzify-log-announce {
+	            	background: yellow;
+	            	color: #000;
+	            	min-width: 65px;
+	          	}
+
 	            .youzify-log-fix {
 	                background: #898989;
 	            }
+
 
 	            .youzify-log-improvement {
 	                background: #ffc107;
@@ -1704,17 +1825,36 @@ class Youzify_Admin {
 				    text-decoration: none;
 	            }
 
+	            .yzp-cancel-changelog {
+	            	float: right;
+				    margin-top: 10px;
+				    text-decoration: none;
+	            }
+
+	            .yzp-cancel-changelog span {
+				    margin-left: 15px;
+				    background: #eee;
+				    width: 35px;
+				    height: 35px;
+				    line-height: 35px;
+				    text-align: center;
+				    border-radius: 50%;
+	            }
 	        </style>
-	        <div style="margin-top: 35px;">
-	        	<?php youzify_offer_banner( true ); ?>
-	        </div>
-	        <div class="updated notice is-dismissible">
+	        <!-- <div style="margin-top: 35px;"> -->
+	        	<?php // youzify_offer_banner( true ); ?>
+	        <!-- </div> -->
+	        <div class="updated notice">
+        <a class="yzp-cancel-changelog"  href="<?php echo add_query_arg( 'youzify-dismiss-offer-notice', $id, youzify_get_current_page_url() ); ?>"><span style="color:#000;" class="dashicons dashicons-no-alt"></span></a>
 	            <div class="youzify-log-message">
 	                <div class="youzify-logs">
 	                	<?php foreach( $logs as $log ) : ?>
 	                    <div class="youzify-log-content">
 	                        <div class="youzify-log-title"><span class="youzify-log-type youzify-free-label"><?php echo $log['title']; ?></span><span class="youzify-title-label ">Change Log</span></div>
 	                        <div class="youzify-log">
+	                            <?php if ( isset( $log['log']['announce'] ) ) : foreach ( $log['log']['announce'] as $msg ) : ?>
+	                                <div class="youzify-log-item youzify-log-announcement"><span class="youzify-log-announce">Announce</span><?php echo $msg; ?></div>
+	                            <?php endforeach; endif; ?>
 	                            <?php if ( isset( $log['log']['new'] ) ) : foreach ( $log['log']['new'] as $msg ) : ?>
 	                                <div class="youzify-log-item"><span class="youzify-log-new">New</span><?php echo $msg; ?></div>
 	                            <?php endforeach; endif; ?>
@@ -1730,15 +1870,20 @@ class Youzify_Admin {
 
 	                </div>
 	                <div class="youzify-log-offers">
-	                 <!--    <div class="youzify-log-offer">
+	                    <div class="youzify-log-offer">
 	                            <div class="youzify-offer-label"><?php echo $offer['label']; ?></div>
 	                        <div class="youzify-offer-img"><a href="<?php echo $offer['link']; ?>"><img src="<?php echo $offer['image']; ?>" alt=""></a></div>
 	                        <div class="youzify-offer-details">
 	                            <div class="youzify-offer-title"><a href="<?php echo $offer['link']; ?>"><?php echo $offer['title']; ?></a></div>
 	                            <div class="youzify-offer-desc"><?php echo $offer['description']; ?></div>
-	                            <div class="youzify-offer-button"><a href="<?php echo $offer['link']; ?>"><?php echo $offer['button']; ?></a></div>
+	                            <div class="youzify-offer-features">
+	                            	<?php foreach( $offer['features'] as $feature ) : ?>
+	                            		<div class="youzify-offer-feature"><span class="dashicons dashicons-saved"></span><?php echo $feature; ?></div>
+	                            	<?php endforeach; ?>
+	                            	</div>
+	                            <div class="youzify-offer-button"><a target="_blank" href="<?php echo $offer['link']; ?>"><span class="yz-shake-me">👉</span><?php echo $offer['button']; ?></a></div>
 	                        </div>
-	                    </div> -->
+	                    </div>
 
 	                    <?php if( strtotime( $coupon['date'] ) > strtotime('now') ) : ?>
 		                <div class="youzify-offer-coupon">
@@ -1756,9 +1901,6 @@ class Youzify_Admin {
 
 	        <?php
 
-			// Hide Notice.
-	        delete_transient( 'youzify-change-log-notice-' . YOUZIFY_VERSION  );
-	    }
 	}
 }
 

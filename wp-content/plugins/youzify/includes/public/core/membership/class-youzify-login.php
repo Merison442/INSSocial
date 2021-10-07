@@ -18,6 +18,7 @@ class Youzify_Membership_Login {
 			add_action( 'wp_login_failed', array( $this, 'login_failed' ), 9999 );
 
 		}
+
 	}
 
 	/**

@@ -297,21 +297,23 @@ class Youzify_Profile {
 
 			<?php if ( $layout != 'youzify-left-sidebar' ) : ?>
 			<div class="youzify-sidebar-column grid-column youzify-profile-sidebar youzify-right-sidebar"><?php $this->sidebar_widgets( 'right', youzify_option( 'youzify_profile_sidebar_widgets', array(
-					'login'           => 'visible',
-			        'user_balance'    => 'visible',
-			        'user_badges'     => 'visible',
-			        'about_me'        => 'visible',
-			        'wall_media'      => 'visible',
-			        'social_networks' => 'visible',
-			        'friends'         => 'visible',
-			        'flickr'          => 'visible',
-			        'groups'          => 'visible',
-			        'recent_posts'    => 'visible',
-			        'user_tags'       => 'visible',
-			        'email'           => 'visible',
-			        'address'         => 'visible',
-			        'website'         => 'visible',
-			        'phone'           => 'visible'
+					'login'          		 => 'visible',
+			        'user_balance'    		 => 'visible',
+			        'user_badges'     		 => 'visible',
+			        'gamipress_user_balance' => 'visible',
+			        'gamipress_user_badges'  => 'visible',
+			        'about_me'        		 => 'visible',
+			        'wall_media'      		 => 'visible',
+			        'social_networks' 		 => 'visible',
+			        'friends'         		 => 'visible',
+			        'flickr'          		 => 'visible',
+			        'groups'         		 => 'visible',
+			        'recent_posts'    		 => 'visible',
+			        'user_tags'       		 => 'visible',
+			        'email'           		 => 'visible',
+			        'address'         		 => 'visible',
+			        'website'         		 => 'visible',
+			        'phone'           		 => 'visible'
 			    ) ) ); ?></div>
 			<?php endif; endif; ?>
 

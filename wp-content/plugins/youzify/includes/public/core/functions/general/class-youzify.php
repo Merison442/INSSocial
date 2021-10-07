@@ -634,6 +634,12 @@ class Youzify {
 
         }
 
+        if ( youzify_is_gamipress_installed() ) {
+
+            require YOUZIFY_CORE . 'gamipress/youzify-gamipress-functions.php';
+
+        }
+
 
 
         // Directory Functions.

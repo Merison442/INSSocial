@@ -305,6 +305,26 @@ function youzify_get_profile_widget_args( $widget ) {
             );
             break;
 
+        case 'gamipress_user_badges':
+            $args = array(
+                'order'  => 100,
+                'icon' => 'fas fa-trophy',
+                'id' => 'gamipress_user_badges',
+                'name'  => youzify_option( 'youzify_gamipress_wg_user_badges_title', __( 'User Badges', 'youzify' ) ),
+            );
+
+            break;
+
+        case 'gamipress_user_balance':
+            $args = array(
+                'order'  => 100,
+                'icon' => 'fas fa-gem',
+                'id' => 'gamipress_user_balance',
+                'display_title' => youzify_option( 'youzify_gamipress_wg_user_balance_display_title', 'off' ),
+                'name'  => youzify_option( 'youzify_gamipress_wg_user_balance_title', __( 'User Balance', 'youzify' ) ),
+            );
+            break;
+
         case 'recent_posts':
              $args = array(
                 'id' => 'recent_posts',
@@ -917,32 +937,34 @@ function youzify_profile_widgets() {
 
     // Widget Arguments
     $widgets = array(
-        'post'            =>  array( 'class' => 'Youzify_Profile_Post_Widget', 'file' => 'post' ),
-        'link'            =>  array( 'class' => 'Youzify_Profile_Link_Widget', 'file' => 'link' ),
-        'quote'           =>  array( 'class' => 'Youzify_Profile_Quote_Widget', 'file' => 'quote' ),
-        'video'           =>  array( 'class' => 'Youzify_Profile_Video_Widget', 'file' => 'video' ),
-        'flickr'          =>  array( 'class' => 'Youzify_Profile_Flickr_Widget', 'file' => 'flickr' ),
-        'skills'          =>  array( 'class' => 'Youzify_Profile_Skills_Widget', 'file' => 'skills' ),
-        'groups'          =>  array( 'class' => 'Youzify_Profile_Groups_Widget', 'file' => 'groups' ),
-        'friends'         =>  array( 'class' => 'Youzify_Profile_Friends_Widget', 'file' => 'friends' ),
-        'project'         =>  array( 'class' => 'Youzify_Profile_Project_Widget', 'file' => 'project' ),
-        'reviews'         =>  array( 'class' => 'Youzify_Profile_Reviews_Widget', 'file' => 'reviews' ),
-        'about_me'        =>  array( 'class' => 'Youzify_Profile_About_Me_Widget', 'file' => 'about-me' ),
-        'services'        =>  array( 'class' => 'Youzify_Profile_Services_Widget', 'file' => 'services' ),
-        'user_tags'       =>  array( 'class' => 'Youzify_Profile_User_Tags_Widget', 'file' => 'user-tags' ),
-        'portfolio'       =>  array( 'class' => 'Youzify_Profile_Portfolio_Widget', 'file' => 'portfolio' ),
-        'slideshow'       =>  array( 'class' => 'Youzify_Profile_Slideshow_Widget', 'file' => 'slideshow' ),
-        'instagram'       =>  array( 'class' => 'Youzify_Profile_Instagram_Widget', 'file' => 'instagram' ),
-        'wall_media'      =>  array( 'class' => 'Youzify_Profile_Media_Widget', 'file' => 'media' ),
-        'user_badges'     =>  array( 'class' => 'Youzify_Profile_User_Badges_Widget', 'file' => 'user-badges' ),
-        'user_balance'    =>  array( 'class' => 'Youzify_Profile_User_Balance_Widget', 'file' => 'user-balance' ),
-        'recent_posts'    =>  array( 'class' => 'Youzify_Profile_Recent_Posts_Widget', 'file' => 'recent-posts' ),
-        'social_networks' =>  array( 'class' => 'Youzify_Profile_Networks_Widget', 'file' => 'social-networks' ),
-        'login'           =>  array( 'class' => 'Youzify_Profile_Login_Button_Widget', 'file' => 'login' ),
-        'phone'           =>  array( 'class' => 'Youzify_Profile_Phone_Info_Box_Widget', 'file' => 'phone' ),
-        'email'           =>  array( 'class' => 'Youzify_Profile_Email_Info_Box_Widget', 'file' => 'email' ),
-        'website'         =>  array( 'class' => 'Youzify_Profile_Website_Info_Box_Widget', 'file' => 'website' ),
-        'address'         =>  array( 'class' => 'Youzify_Profile_Address_Info_Box_Widget', 'file' => 'address' )
+        'post'                   =>  array( 'class' => 'Youzify_Profile_Post_Widget', 'file' => 'post' ),
+        'link'                   =>  array( 'class' => 'Youzify_Profile_Link_Widget', 'file' => 'link' ),
+        'quote'                  =>  array( 'class' => 'Youzify_Profile_Quote_Widget', 'file' => 'quote' ),
+        'video'                  =>  array( 'class' => 'Youzify_Profile_Video_Widget', 'file' => 'video' ),
+        'flickr'                 =>  array( 'class' => 'Youzify_Profile_Flickr_Widget', 'file' => 'flickr' ),
+        'skills'                 =>  array( 'class' => 'Youzify_Profile_Skills_Widget', 'file' => 'skills' ),
+        'groups'                 =>  array( 'class' => 'Youzify_Profile_Groups_Widget', 'file' => 'groups' ),
+        'friends'                =>  array( 'class' => 'Youzify_Profile_Friends_Widget', 'file' => 'friends' ),
+        'project'                =>  array( 'class' => 'Youzify_Profile_Project_Widget', 'file' => 'project' ),
+        'reviews'                =>  array( 'class' => 'Youzify_Profile_Reviews_Widget', 'file' => 'reviews' ),
+        'about_me'               =>  array( 'class' => 'Youzify_Profile_About_Me_Widget', 'file' => 'about-me' ),
+        'services'               =>  array( 'class' => 'Youzify_Profile_Services_Widget', 'file' => 'services' ),
+        'user_tags'              =>  array( 'class' => 'Youzify_Profile_User_Tags_Widget', 'file' => 'user-tags' ),
+        'portfolio'              =>  array( 'class' => 'Youzify_Profile_Portfolio_Widget', 'file' => 'portfolio' ),
+        'slideshow'              =>  array( 'class' => 'Youzify_Profile_Slideshow_Widget', 'file' => 'slideshow' ),
+        'instagram'              =>  array( 'class' => 'Youzify_Profile_Instagram_Widget', 'file' => 'instagram' ),
+        'wall_media'             =>  array( 'class' => 'Youzify_Profile_Media_Widget', 'file' => 'media' ),
+        'user_badges'            =>  array( 'class' => 'Youzify_Profile_User_Badges_Widget', 'file' => 'user-badges' ),
+        'user_balance'           =>  array( 'class' => 'Youzify_Profile_User_Balance_Widget', 'file' => 'user-balance' ),
+        'gamipress_user_badges'  =>  array( 'class' => 'Youzify_Gamipress_Profile_User_Badges_Widget', 'file' => 'gamipress-user-badges' ),
+        'gamipress_user_balance' =>  array( 'class' => 'Youzify_Gamipress_Profile_User_Balance_Widget', 'file' => 'gamipress-user-balance' ),
+        'recent_posts'           =>  array( 'class' => 'Youzify_Profile_Recent_Posts_Widget', 'file' => 'recent-posts' ),
+        'social_networks'        =>  array( 'class' => 'Youzify_Profile_Networks_Widget', 'file' => 'social-networks' ),
+        'login'                  =>  array( 'class' => 'Youzify_Profile_Login_Button_Widget', 'file' => 'login' ),
+        'phone'                  =>  array( 'class' => 'Youzify_Profile_Phone_Info_Box_Widget', 'file' => 'phone' ),
+        'email'                  =>  array( 'class' => 'Youzify_Profile_Email_Info_Box_Widget', 'file' => 'email' ),
+        'website'                =>  array( 'class' => 'Youzify_Profile_Website_Info_Box_Widget', 'file' => 'website' ),
+        'address'                =>  array( 'class' => 'Youzify_Profile_Address_Info_Box_Widget', 'file' => 'address' )
     );
 
     return apply_filters( 'youzify_profile_widgets', $widgets );

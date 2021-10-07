@@ -114,7 +114,7 @@ class Youzify_Tabs {
 		            bp_core_new_subnav_item( array(
 		                    'slug' => $page['slug'],
 		                    'name' => $page['title'],
-		                    'slug' => $page['position'],
+		                    'position' => $page['position'],
 		                    'parent_slug' => $media_slug,
 		                    'parent_url' => $user_domain . "$media_slug/",
 		                    'screen_function' => array( $this, 'media_screen' ),
@@ -212,6 +212,21 @@ class Youzify_Tabs {
 			        'parent_slug' => $bp->profile->slug,
 			        'name' => youzify_option( 'youzify_mycred_badges_tab_title', __( 'Badges', 'youzify' ) ),
 			        'screen_function' => 'youzify_profile_mycred_badges_tab_screen',
+			    )
+			);
+
+		}
+
+		if ( defined( 'GAMIPRESS_VER' ) && youzify_is_gamipress_active() ) {
+
+			// Add Badges Tab.
+			bp_core_new_nav_item(
+			    array(
+			        'position' => 100,
+			        'slug' => apply_filters( 'youzify_gamipress_badges_slug', 'gamipress_badges' ),
+			        'parent_slug' => $bp->profile->slug,
+			        'name' => youzify_option( 'youzify_gamipress_badges_tab_title', __( 'Badges', 'youzify' ) ),
+			        'screen_function' => 'youzify_profile_gamipress_badges_tab_screen',
 			    )
 			);
 
@@ -527,7 +542,7 @@ class Youzify_Tabs {
             	array(
                     'slug' => $page['slug'],
                     'name' => $page['title'],
-		            'slug' => $page['position'],
+		            'position' => $page['position'],
                     'parent_slug' => $group_media_slug,
                     'item_css_id' => 'media-' . $page['slug'],
                     'parent_url' => bp_get_group_permalink( $group )  . "$group_media_slug/",

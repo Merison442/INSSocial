@@ -46,6 +46,7 @@ function youzify_load_widgets() {
     require YOUZIFY_CORE . 'widgets/wordpress-widgets/class-youzify-notifications-widget.php';
     require YOUZIFY_CORE . 'widgets/wordpress-widgets/class-youzify-group-description-widget.php';
     require YOUZIFY_CORE . 'widgets/wordpress-widgets/class-youzify-mycred-balance-widget.php';
+    require YOUZIFY_CORE . 'widgets/wordpress-widgets/class-youzify-gamipress-balance-widget.php';
     require YOUZIFY_CORE . 'widgets/wordpress-widgets/class-youzify-verified-users-widget.php';
 
     // Register Widgets

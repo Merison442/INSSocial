@@ -67,9 +67,13 @@ add_action( 'bp_actions', 'youzify_bpfollwers_tabs', 99 );
 /**
  * Get Statistics Value
  */
-function youzify_get_follows_statistics_values( $value, $user_id, $type ) {
+
+add_filter( 'youzify_get_user_statistic_number', 'youzify_get_follows_statistics_values', 10, 3 );
+
+function youzify_get_follows_statistics_values( $value = null, $user_id, $type ) {
 
 	switch ( $type ) {
+
 		case 'followers':
 			return bp_follow_get_the_followers_count( array( 'object_id' => $user_id ) );
 
@@ -81,8 +85,6 @@ function youzify_get_follows_statistics_values( $value, $user_id, $type ) {
 	}
 
 }
-
-add_filter( 'youzify_get_user_statistic_number', 'youzify_get_follows_statistics_values', 10, 3 );
 
 /**
  * Get Members Directory Follows Statistics.

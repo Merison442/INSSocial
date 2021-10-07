@@ -2497,7 +2497,6 @@ vertical-align: middle;
 /*
  * Wall - Custom Form
  **/
-
 .youzify-wall-custom-form {
     overflow: hidden;
     padding: 25px 25px 0 25px;
@@ -2613,6 +2612,7 @@ vertical-align: middle;
     margin: 0;
     width: 100%;
     color: #898989;
+    height: initial;
     font-size: 13px;
     padding: 8px 15px;
     line-height: 24px;
@@ -2658,6 +2658,7 @@ vertical-align: middle;
     height: 25px;
     border: none;
     padding: 0;
+    color: #fff;
     z-index: 1000;
     -webkit-appearance: none;
     -moz-appearance: none;

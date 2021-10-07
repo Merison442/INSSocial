@@ -58,6 +58,47 @@ class Youzify_Setup {
 		   wp_schedule_event( time(), 'daily', 'youzify_delete_media_temporary_files' );
 		}
 
+        if ( ! youzify_option( 'yzc_install_youzify_3.2.6_options' )  ) {
+
+        	$id = 'youzify_profile_sidebar_widgets';
+
+	        // Get Sidebar Widgets
+	        $sidebar_widgets = youzify_options( $id );
+
+	        if ( empty( $sidebar_widgets ) ) {
+
+	        	$id = 'youzify_profile_left_sidebar_widgets';
+
+	        	$sidebar_widgets = youzify_options( $id );
+
+	        	if ( empty( $sidebar_widgets ) ) {
+        			$id = 'youzify_profile_sidebar_widgets';
+	        	}
+
+	        }
+
+	        // New Widgets List.
+	        $new_widgets = array(
+	        	'gamipress_user_badges' => 'visible',
+	        	'gamipress_user_balance' => 'visible',
+	        );
+
+	        // Add New Widgets.
+	        foreach ( $new_widgets as $key => $widget ) {
+
+	        	if ( isset( $sidebar_widgets[ $key ] ) ) {
+	        		continue;
+	        	}
+
+	            $sidebar_widgets[ $key ] = 'visible';
+
+	        }
+
+	        // Save New Widget.
+	        update_option( $id, $sidebar_widgets );
+
+        }
+
 		// Create Pages
 		$this->create_pages();
 

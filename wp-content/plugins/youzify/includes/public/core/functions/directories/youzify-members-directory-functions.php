@@ -136,7 +136,6 @@ function youzify_members_directory_members_per_page( $loop ) {
         }
     }
 
-
     return $loop;
 }
 

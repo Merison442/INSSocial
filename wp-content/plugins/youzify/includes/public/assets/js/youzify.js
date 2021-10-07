@@ -346,12 +346,12 @@
 
 		});
 
-    	$( window ).on( 'load', function() {
-    		if ( Youzify.live_notifications == 'on' && wp.heartbeat ) {
-		    	$( '<script/>', { rel: 'text/javascript', src: Youzify.assets + 'js/youzify-live-notifications.min.js' } ).appendTo( 'head' );
-    		}
-		});
-
 	});
 
 })( jQuery );
+
+jQuery( window ).on( 'load', function() {
+	if ( Youzify.live_notifications == 'on' && wp.heartbeat ) {
+    	jQuery( '<script/>', { rel: 'text/javascript', src: Youzify.assets + 'js/youzify-live-notifications.min.js' } ).appendTo( 'head' );
+	}
+});

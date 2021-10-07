@@ -313,9 +313,14 @@ class Youzify {
         require YOUZIFY_CORE . 'functions/youzify-authentication-functions.php';
         require YOUZIFY_CORE . 'functions/youzify-member-types-functions.php';
 
-        if ( youzify_is_mycred_installed() ) {
+        if ( youzify_is_mycred_active() ) {
             require YOUZIFY_CORE . 'mycred/youzify-mycred-functions.php';
         }
+        
+
+        /*if ( youzify_is_gamipress_active() ) {
+            require YOUZIFY_CORE . 'gamipress/youzify-gamipress-functions.php';
+        }*/
 
         // Directory Functions.
         require YOUZIFY_CORE . 'functions/directories/youzify-members-directory-functions.php';

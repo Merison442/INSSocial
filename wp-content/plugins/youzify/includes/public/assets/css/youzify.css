@@ -4738,8 +4738,10 @@ body.my-listing.buddypress {
 }
 
 @media(any-pointer: coarse) {
-    .youzify-tooltip:before, [data-youzify-tooltip]:before,
-    .youzify-tooltip:after, [data-youzify-tooltip]:after {
+    .youzify-tooltip:before,
+    [data-youzify-tooltip]:before,
+    .youzify-tooltip:after,
+    [data-youzify-tooltip]:not(.youzify-copy_link-sbtn):after {
         display: none;
     }
 }

@@ -91,7 +91,7 @@ $attributes = $Youzify_Membership->form->get_attributes( 'register' ); ?>
 			do_action( 'bp_after_registration_disabled' ); ?>
 		<?php endif; // registration-disabled signup step ?>
 
-		<form action="<?php echo bp_get_signup_page(); ?>" name="signup_form" id="youzify_membership_signup_form" class="standard-form" method="post" enctype="multipart/form-data">
+		<form action="" name="signup_form" id="youzify_membership_signup_form" class="standard-form" method="post" enctype="multipart/form-data">
 
 		<?php if ( 'request-details' == bp_get_current_signup_step() ) : ?>
 

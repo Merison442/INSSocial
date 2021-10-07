@@ -525,6 +525,10 @@ class Youzify_Wall {
 	 */
 	function get_activity_url_preview( $activity_id, $activity_content = null ) {
 
+		if ( isset( $_POST['action'] ) && $_POST['action'] == 'get_single_activity_content' ) {
+			return;
+		}
+
 		// Get Url Data.
 		$url = bp_activity_get_meta( $activity_id, 'url_preview' );
 
@@ -803,7 +807,7 @@ class Youzify_Wall {
 	}
 
 	/**
-	 * 	Wall New Post Thumbnail
+	 * 	Wall New Post Thumbnail&a
 	 */
 	function embed_post_thumbnail( $post_id = false ) {
 
@@ -999,13 +1003,20 @@ class Youzify_Wall {
 
 	        global $Youzify_upload_url;
 
+	        $wall_jquery = array( 'jquery' );
+
+	        if ( is_user_logged_in() ) {
+	        	$wall_jquery[] = 'jquery-ui-sortable';
+	        }
+
 	        // Wall Uploader
-	        wp_enqueue_script( 'youzify-wall-form', YOUZIFY_ASSETS . 'js/youzify-wall-form.min.js', array( 'jquery' ), YOUZIFY_VERSION, true );
+	        wp_enqueue_script( 'youzify-wall-form', YOUZIFY_ASSETS . 'js/youzify-wall-form.min.js', $wall_jquery, YOUZIFY_VERSION, true );
 
 	        $wall_args = apply_filters( 'Youzify_wall_js_args', array(
                 'poll_max_options'  => __( 'The max number of allowed options is %d.', 'youzify' ),
                 'max_one_file'      => __( "You can't upload more than one file.", 'youzify' ),
                 'base_url'          => $Youzify_upload_url,
+                'wp_url'			=> site_url(),
                 'giphy_limit'       => 12,
             ) );
 

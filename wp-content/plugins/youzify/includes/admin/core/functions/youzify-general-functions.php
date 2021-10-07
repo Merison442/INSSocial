@@ -222,19 +222,19 @@ function youzify_get_user_statistics_options() {
 /**
  * Special Offer
  **/
-add_action( 'youzify_admin_before_form', 'youzify_special_offer' );
+// add_action( 'youzify_admin_before_form', 'youzify_special_offer' );
 
 function youzify_special_offer() {
 
-    $id = 'youzify_7day_aap_offer_2';
+    $id = 'youzify_7day_aap_offer_4';
 
     if ( isset( $_GET['youzify-dismiss-offer-notice'] ) ) {
         youzify_update_option( $_GET['youzify-dismiss-offer-notice'], 1 );
     }
 
-    if ( strtotime( '2021/09/19') < strtotime( 'now' ) || youzify_option( $id ) ) {
-        return;
-    }
+    // if ( strtotime( '2021/09/19') < strtotime( 'now' ) || youzify_option( $id ) ) {
+    //     // return;
+    // }
 
     $price = array(
         'currency' => '$',
@@ -483,7 +483,7 @@ function youzify_special_offer() {
             color: #000;
             font-weight: 600;
         }
-9
+
         .yzp-black-theme .yzp-box-bonus {
             color: #000;
             font-weight: 600;
@@ -872,17 +872,262 @@ function youzify_special_offer() {
 /**
  * Offer Banneer
  */
-function youzify_offer_banner( $show_button = false ) { ?>
+add_action( 'admin_notices', 'youzify_offer_banner' );
+function youzify_offer_banner( $show_button = true ) {
 
-    <style type="text/css">
+    if (  ! youzify_is_feature_available() ) {
+        return;
+    }
+
+    $id = 'youzify_aap_october_2021_offer';
+
+    if ( isset( $_GET['youzify-dismiss-offer-notice'] ) ) {
+        youzify_update_option( $_GET['youzify-dismiss-offer-notice'], 1 );
+    }
+
+    if ( get_option( $id ) ) {
+        return;
+    }
+
+    youzify_get_offer_banner_css();
+
+    ?>
+
+
+    <div class="yzp-heading" style="background-image: linear-gradient(
+130deg, #3F51B5 0%, #663BB7 100%);color:#fff;">
+        <a class="yzp-cancel-offer"  href="<?php echo add_query_arg( 'youzify-dismiss-offer-notice', $id, youzify_get_current_page_url() ); ?>"><span style="color:#fff;" class="dashicons dashicons-no-alt"></span></a>
+        <div class="yzp-offer-head">
+            <div style="margin-bottom: 25px;">
+            <span class="position-relative text-nowrap" style="
+    position: relative;
+        padding: 12px 10px 6px;
+    margin-bottom: 25px;
+    white-space: nowrap!important;
+">
+    <img class="position-absolute" style="left: 50%;top: 50%;transform: translate(-50%, -50%);width: 110%;position: absolute;height:100%;" alt="prop image" src="https://youzify.com/wp-content/uploads//2021/10/yellow-highlight.svg"><span class="position-relative text-nowrap" style="background-color: transparent;letter-spacing: 0px;position: relative;color: #fff;"><span class="position-relative" style="padding:0 15px;color: #000;font-size: 25px;    font-weight: 600;
+    ">A Trully Limited Time Offer</span></span><span style="background-color: transparent; letter-spacing: 0px; white-space: pre-wrap;"></span></span></div>
+
+            <!-- <div class="yzp-head-tag">A TRULLY LIMITED TIME OFFER</div> -->
+            <div class="yzp-head-title" style="color: #fff952;">Due to the increased value and number of our add-ons, Youzify - All-Access Pass Price Increased!</div>
+            <div class="yzp-head-title">Your last chance to save BIG on <span class="position-relative text-nowrap" style="
+    position: relative;
+"><img class="position-absolute" style="left: 50%;top: 66%;transform: translate(-50%, -50%);width: 100%;height:100%;position: absolute;" alt="" src="https://youzify.com/wp-content/uploads//2021/10/yellow-underline.svg"><span class="position-relative">Youzify - All-Access Pass</span></span> and get it for a very cheap price.</div>
+            <?php //if ( $show_button ) : ?>
+            <div class="yzp-offer-buttons">
+                <a target="_blank" class="yzp-view-offer-details" href="https://youzify.com/youzify-all-access-pass-offer/?utm_campaign=youzify-all-access-pass-2021-offer&utm_medium=top-bar&utm_source=client-site&utm_content=act-now">👉 View Offer Details<span class="dashicons dashicons-arrow-right-alt"></span></a>
+
+                <?php //endif; ?>
+            </div>
+            <div class="yzp-head-date" style="opacity: 0.8;font-weight: 400;">*As this offer represents a huge loss for us in the long term, we reserve the right to take it down at any time without any prior notice.</div>
+        </div>
+        <!-- <div id="kl-countdown" class="kl-countdown">
+            <ul>
+              <li><span class="days">0</span>Days</li>
+              <li><span class="hours">0</span>Hours</li>
+              <li><span class="minutes">0</span>Minutes</li>
+              <li><span class="seconds blinking">0</span>Seconds</li>
+            </ul>
+      </div> -->
+    </div>
+
+     <script type="text/javascript">
+      /*! yscountdown v1.0.0 | Yusuf SEZER <yusufsezer@mail.com> | MIT License | https://github.com/yusufsefasezer/ysCountDown.js */
+    !function(t,o){"function"==typeof define&&define.amd?define([],function(){return o(t)}):"object"==typeof exports?module.exports=o(t):t.ysCountDown=o(t)}("undefined"!=typeof global?global:"undefined"!=typeof window?window:this,function(u){"use strict";return function(t,o){var n={},r=null,a=null,e=null,l=null,i=!1;n.init=function(t,o){if(!("addEventListener"in u))throw"ysCountDown: This browser does not support the required JavaScript methods.";if(n.destroy(),r="string"==typeof t?new Date(t):t,!((e=r)instanceof Date)||isNaN(e))throw new TypeError("ysCountDown: Please enter a valid date.");var e;if("function"!=typeof o)throw new TypeError("ysCountDown: Please enter a callback function.");a=o,s()},n.destroy=function(){a=r=null,f(),l=null,i=!1};var s=function(){e||(e=setInterval(function(){var t,o;t=new Date,(o=Math.ceil((r.getTime()-t.getTime())/1e3))<=0&&(i=!0,f()),l={seconds:o%60,minutes:Math.floor(o/60)%60,hours:Math.floor(o/60/60)%24,days:Math.floor(o/60/60/24)%7,daysToWeek:Math.floor(o/60/60/24)%7,daysToMonth:Math.floor(o/60/60/24%30.4368),weeks:Math.floor(o/60/60/24/7),weeksToMonth:Math.floor(o/60/60/24/7)%4,months:Math.floor(o/60/60/24/30.4368),monthsToYear:Math.floor(o/60/60/24/30.4368)%12,years:Math.abs(r.getFullYear()-t.getFullYear()),totalDays:Math.floor(o/60/60/24),totalHours:Math.floor(o/60/60),totalMinutes:Math.floor(o/60),totalSeconds:o},a(l,i)},100))},f=function(){e&&(clearInterval(e),e=null)};return n.init(t,o),n}});
+
+
+    ( function( $ ) {
+
+    $( document ).ready( function() {
+
+   // var endDate = "< ?php echo date('Y-m-d', strtotime(' +1 day')) ?>";
+    var endDate = "2021/09/19";
+
+    var myCountDown = new ysCountDown(endDate, function (remaining, finished) {
+
+      if ( finished ) {
+         $( '.kl-countdown' ).text( 'Offer Expired' );
+      }
+
+      $( '.days' ).text( remaining.totalDays );
+      $( '.hours' ).text( remaining.hours );
+      $( '.minutes' ).text( remaining.minutes );
+      $( '.seconds' ).text( remaining.seconds );
+
+    });
+
+    });
+
+    })( jQuery );
+  </script>
+    <?php
+
+}
+
+
+/**
+ * Offer Banneer
+ */
+add_action( 'admin_notices', 'youzify_pro_version_banner' );
+function youzify_pro_version_banner( $show_button = true ) {
+
+    if (  youzify_is_feature_available() ) {
+        return;
+    }
+
+    $id = 'youzify_pro_version_october_2021_offer';
+
+    if ( isset( $_GET['youzify-dismiss-offer-notice'] ) ) {
+        youzify_update_option( $_GET['youzify-dismiss-offer-notice'], 1 );
+    }
+
+
+    if ( strtotime( '2021/11/1') < strtotime( 'now' ) || youzify_option( $id ) ) {
+        return;
+    }
+
+    youzify_get_offer_banner_css();
+
+    ?>
+
+    <div class="yzp-heading" style="background-image: linear-gradient(
+    130deg, #3F51B5 0%, #663BB7 100%);color:#fff;">
+    <a class="yzp-cancel-offer"  href="<?php echo add_query_arg( 'youzify-dismiss-offer-notice', $id, youzify_get_current_page_url() ); ?>"><span style="color:#fff;" class="dashicons dashicons-no-alt"></span></a>
+    <div class="yzp-offer-head">
+    <div style="margin-bottom: 25px;">
+    <span class="position-relative text-nowrap" style="
+    position: relative;
+    padding: 12px 10px 6px;
+    margin-bottom: 25px;
+    white-space: nowrap!important;
+    ">
+    <img class="position-absolute" style="left: 50%;top: 50%;transform: translate(-50%, -50%);width: 110%;position: absolute;height:100%;" alt="prop image" src="https://youzify.com/wp-content/uploads//2021/10/yellow-highlight.svg"><span class="position-relative text-nowrap" style="background-color: transparent;letter-spacing: 0px;position: relative;color: #fff;"><span class="position-relative" style="padding:0 15px;color: #000;font-size: 25px;    font-weight: 600;
+    ">[ATTENTION] Youzify Pro Price is Going UP by 31 October 2021</span></span><span style="background-color: transparent; letter-spacing: 0px; white-space: pre-wrap;"></span></span></div>
+
+    <!-- <div class="yzp-head-tag">A TRULLY LIMITED TIME OFFER</div> -->
+    <div class="yzp-head-title" style="color: #fff952;">Due to the increased value in our premium version the price will be increased by the end of this month!</div>
+    <div class="yzp-head-title">Your last chance to secure <span class="position-relative text-nowrap" style="position: relative;"><img class="position-absolute" style="left: 50%;top: 66%;transform: translate(-50%, -50%);width: 100%;height:100%;position: absolute;font-weight: 600;" alt="" src="https://youzify.com/wp-content/uploads//2021/10/yellow-underline.svg"><span class="position-relative">Youzify PRO for only $49</span></span>. It's only <strong>one-time</strong> payment for <strong>lifetime updates</strong>.</div>
+
+    <a target="_blank" style="margin: 5px 0 35px;" class="yzp-view-offer-details" href="https://codecanyon.net/item/youzer-new-wordpress-user-profiles-era/19716647?utm_campaign=youzify-go-pro&utm_medium=banner&utm_source=client-site&utm_content=act-now">👉 GO PRO NOW<span class="dashicons dashicons-arrow-right-alt"></span></a>
+    <div class="yzo-subhead">What's included in Youzify Pro Version?</div>
+    <div class="yzo-features">
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>14 Header Styles</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>03 Content Layouts ( 3 Columns, Right Sidebar )</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>Hashtags, Bookmarks, Share Posts, Polls.</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>Tag Friends, Sticky Posts, Comments GIF's.</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>Comments, Messages Attachments.</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>Real-time Notifications.</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>Posts Mood & Activities.</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>Posts Privacy: Public, Only Me, Friend...</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>Ajax Login, Login Form Popup</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>Friends & Groups Suggestions Widgets</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>Unlimited Tabs, Widgets, and Links.</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>Activity Stream Shortcode</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>Members Directory Shortcode</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>Groups Directory Shortcode</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>Hashtags List Shortcode</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>Community Hashtags Cloud Shortcode</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>Unlock Hundreds of Youzify Restricted Options</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>And Much More and More and More...</div>
+    </div>
+
+    <div class="yzo-subhead" style="color:#fff952; margin-top: 25px;">Plus you will get these FREE Bonuses!</div>
+    <div class="yzo-features yzo-yellow-icons">
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>Lifetime Updates</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>6 Month FREE World-Class Support</div>
+        <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>All Upcoming Pro Features for FREE</div>
+    </div>
+
+    <a target="_blank" style="margin: 15px 0 10px;" class="yzp-view-offer-details" href="https://codecanyon.net/item/youzer-new-wordpress-user-profiles-era/19716647?utm_campaign=youzify-go-pro&utm_medium=banner&utm_source=client-site&utm_content=act-now">👉 GO PRO NOW<span class="dashicons dashicons-arrow-right-alt"></span></a>
+
+    <div class="yzo-subhead" style="color:#fff952; margin-top: 25px;">Look! WE ARE LIARS. Don't take our word for it. 😂</div>
+    <div class="yzo-subhead" >Check +600 reviews with an overall 5-Star rating from real customers just like you at CodeCanyon.</div>
+    <a target="_blank" class="yzp-view-offer-details" href="https://codecanyon.net/user/kainelabs/reviews" style="background: #fff952;margin-top: 0;">👉 View +600 Reviews at CodeCanyon<span class="dashicons dashicons-arrow-right-alt"></span></a>
+
+    <div class="yzo-subhead" style="margin-top: 25px;font-weight: 400;font-size: 21px;line-height: 34px;"><strong>Fun Fact:</strong> If you hired a developer to develop a custom plugin like Youzify it will cost you a 6 figures number (+$100.000 ) with at least 2 years to have the first version ready and <strong>you still won’t get the same clean optimized code, functionalities, performance, and design and continuous progress and support.</strong></div>
+
+    <div class="yzo-letter" style=" background: #fff952; padding: 35px;  border-left: 10px solid #fff952;border-radius: 8px; ">
+        <div style=" font-size: 20px; margin-bottom: 35px; font-weight: 600; color: #000000; display: block;">Would you believe us if we told you that we have almost no benefit from making you buying our PRO version?</div>
+
+        <p>This is not something everyone will have the courage to share with you...</p>
+        <p>We only earn a profit of $10-$12 after Envato fees and taxes per each sale...</p>
+        <p>And that <strong>won't even cover the support you will receive for free in the first 6 months...</strong></p>
+        <p>We want you to take advantage of our PRO features so <strong>you can start growing your business and make more money</strong> to be able to afford our addons in the future...</p>
+        <p>Because they bring us a bit better profit which makes us able to keep the plugin alive and of course <strong>the value we provide in each of our addons is no joke.</strong></p>
+
+        <p>As we say always, <strong>go to try everything else in the market</strong> and then try our products too and you will see ( feel ) the difference.<p>
+
+        <p>In short terms, we don't want you to purchase our plugin <strong>we want you as a customer for LIFE.</strong></p>
+
+        <p>We dedicated lives to this project and our main goal is to <strong>build HUSTLE-FREE plugins where our clients will focus on their business instead of wasting their time dealing with bugs.</strong></p>
+        <a target="_blank" class="yzp-view-offer-details" href="https://codecanyon.net/item/youzer-new-wordpress-user-profiles-era/19716647?utm_campaign=youzify-go-pro&utm_medium=banner&utm_source=client-site&utm_content=act-now">👉 GO PRO NOW<span class="dashicons dashicons-arrow-right-alt"></span></a>
+    </div>
+
+    <!-- <div class="yzp-offer-buttons"> </div> -->
+<!--
+    <div class="yzp-head-date" style="opacity: 0.8;font-weight: 400;">*As this offer represents a huge loss for us in the long term, we reserve the right to take it down at any time without any prior notice.</div> -->
+    </div>
+    <!-- <div id="kl-countdown" class="kl-countdown">
+    <ul>
+    <li><span class="days">0</span>Days</li>
+    <li><span class="hours">0</span>Hours</li>
+    <li><span class="minutes">0</span>Minutes</li>
+    <li><span class="seconds blinking">0</span>Seconds</li>
+    </ul>
+    </div> -->
+    </div>
+
+    <?php
+}
+
+function youzify_get_offer_banner_css() {
+
+    ?>
+
+   <style type="text/css">
+    .yzo-letter p {
+        color: #000;
+        font-size: 17px;
+        line-height: 30px;
+    }
+
+    .yzo-subhead {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 25px;
+    }
 
     .yzp-heading {
         display: flex;
         padding: 35px;
-        margin-bottom: 35px;
+        position: relative;
+        margin: 10px 20px  35px 0;
         border-radius: 8px;
         background: #ffeb3b;
         align-items: center;
+    }
+
+    .yzo-feature {
+        display: inline-flex;
+        align-items: center;
+        font-size: 14px;
+        margin-bottom: 15px;
+        margin-right: 15px;
+        min-width: 30.33%;
+    }
+
+    .yzo-feature span {
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        background: #51ff00;
+        border-radius: 100%;
+        margin-right: 12px;
+    }
+
+    .yzo-yellow-icons .yzo-feature span {
+        background:#fff952;
+        color: #000;
     }
 
     .kl-countdown {
@@ -890,10 +1135,12 @@ function youzify_offer_banner( $show_button = false ) { ?>
         padding: -10px;
         border-radius: 8px;
     }
+
     .yzp-head-title {
-        font-size: 27px;
-        font-weight: 600;
+        font-size: 20px;
+        font-weight: 400;
         margin-bottom: 20px;
+        line-height: 1.3em;
     }
 
     .yzp-head-date {
@@ -1113,6 +1360,7 @@ p.offer-desc strong {
     }
 
 }
+
 @media screen and ( max-width: 475px ) {
     .kl-countdown {
         display: block;
@@ -1123,71 +1371,46 @@ p.offer-desc strong {
     background: #fff;
     height: 55px;
     line-height: 55px;
-    width: 201px;
     text-align: center;
     border-radius: 5px;
     margin-top: 20px;
+    padding: 0 25px;
     font-weight: 600;
     font-size: 15px;
     text-decoration: none;
     color: #1d2327;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+}
 }
     .yzp-view-offer-details span {
         margin-left: 10px;
     }
 
+    .yzp-cancel-offer span.dashicons-no-alt {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0;
+        text-decoration: none;
+        color: #000;
+        width: 35px;
+        display: block;
+        margin: 15px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 25px;
+        border-radius: 100%;
+        text-align: center;
+    }
+
+    .yzp-cancel-offer:hover span {
+         background: #0000001c;
+    }
+
     </style>
-    <div class="yzp-heading">
-        <div class="yzp-offer-head">
-            <div class="yzp-head-tag">ONCE IN A LIFETIME OFFER</div>
-            <div class="yzp-head-title">Youzify - 7-Day All-Access Pass Offer ( HUGE SAVINGS )</div>
-            <div class="yzp-head-date">Ends 18 September 2021, 23.59 GMT</div>
-            <?php if ( $show_button ) : ?>
-            <a class="yzp-view-offer-details" href="<?php echo add_query_arg( array( 'page' => 'youzify-panel' ), admin_url( 'admin.php' ) ); ?>">View Offer Detailss<span class="dashicons dashicons-arrow-right-alt"></span></a>
-            <?php endif; ?>
-        </div>
-        <div id="kl-countdown" class="kl-countdown">
-            <ul>
-              <li><span class="days">0</span>Days</li>
-              <li><span class="hours">0</span>Hours</li>
-              <li><span class="minutes">0</span>Minutes</li>
-              <li><span class="seconds blinking">0</span>Seconds</li>
-            </ul>
-      </div>
-    </div>
-
-     <script type="text/javascript">
-      /*! yscountdown v1.0.0 | Yusuf SEZER <yusufsezer@mail.com> | MIT License | https://github.com/yusufsefasezer/ysCountDown.js */
-    !function(t,o){"function"==typeof define&&define.amd?define([],function(){return o(t)}):"object"==typeof exports?module.exports=o(t):t.ysCountDown=o(t)}("undefined"!=typeof global?global:"undefined"!=typeof window?window:this,function(u){"use strict";return function(t,o){var n={},r=null,a=null,e=null,l=null,i=!1;n.init=function(t,o){if(!("addEventListener"in u))throw"ysCountDown: This browser does not support the required JavaScript methods.";if(n.destroy(),r="string"==typeof t?new Date(t):t,!((e=r)instanceof Date)||isNaN(e))throw new TypeError("ysCountDown: Please enter a valid date.");var e;if("function"!=typeof o)throw new TypeError("ysCountDown: Please enter a callback function.");a=o,s()},n.destroy=function(){a=r=null,f(),l=null,i=!1};var s=function(){e||(e=setInterval(function(){var t,o;t=new Date,(o=Math.ceil((r.getTime()-t.getTime())/1e3))<=0&&(i=!0,f()),l={seconds:o%60,minutes:Math.floor(o/60)%60,hours:Math.floor(o/60/60)%24,days:Math.floor(o/60/60/24)%7,daysToWeek:Math.floor(o/60/60/24)%7,daysToMonth:Math.floor(o/60/60/24%30.4368),weeks:Math.floor(o/60/60/24/7),weeksToMonth:Math.floor(o/60/60/24/7)%4,months:Math.floor(o/60/60/24/30.4368),monthsToYear:Math.floor(o/60/60/24/30.4368)%12,years:Math.abs(r.getFullYear()-t.getFullYear()),totalDays:Math.floor(o/60/60/24),totalHours:Math.floor(o/60/60),totalMinutes:Math.floor(o/60),totalSeconds:o},a(l,i)},100))},f=function(){e&&(clearInterval(e),e=null)};return n.init(t,o),n}});
 
 
-    ( function( $ ) {
-
-    $( document ).ready( function() {
-
-   // var endDate = "< ?php echo date('Y-m-d', strtotime(' +1 day')) ?>";
-    var endDate = "2021/09/18";
-
-    var myCountDown = new ysCountDown(endDate, function (remaining, finished) {
-
-      if ( finished ) {
-         $( '.kl-countdown' ).text( 'Offer Expired' );
-      }
-
-      $( '.days' ).text( remaining.totalDays );
-      $( '.hours' ).text( remaining.hours );
-      $( '.minutes' ).text( remaining.minutes );
-      $( '.seconds' ).text( remaining.seconds );
-
-    });
-
-    });
-
-    })( jQuery );
-  </script>
     <?php
-
 }

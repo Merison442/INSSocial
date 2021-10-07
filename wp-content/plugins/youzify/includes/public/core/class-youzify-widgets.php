@@ -42,7 +42,7 @@ class Youzify_Widgets {
 	 * Get All Widgets
 	 */
 	function get_all_widgets() {
-		return apply_filters( 'youzify_profile_widgets_args', array( 'post', 'link', 'quote', 'video', 'flickr', 'skills', 'groups', 'friends', 'project', 'reviews', 'about_me', 'services', 'user_tags', 'portfolio', 'slideshow', 'instagram', 'wall_media', 'user_badges', 'user_balance', 'recent_posts', 'phone', 'email', 'social_networks', 'website', 'address', 'login' ) );
+		return apply_filters( 'youzify_profile_widgets_args', array( 'post', 'link', 'quote', 'video', 'flickr', 'skills', 'groups', 'friends', 'project', 'reviews', 'about_me', 'services', 'user_tags', 'portfolio', 'slideshow', 'instagram', 'wall_media', 'user_badges', 'user_balance', 'gamipress_user_badges', 'gamipress_user_balance', 'recent_posts', 'phone', 'email', 'social_networks', 'website', 'address', 'login' ) );
 	}
 
 	/**

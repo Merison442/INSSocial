@@ -356,3 +356,12 @@ function youzify_bbpress_default_options( $options ) {
 }
 
 add_filter( 'youzify_default_options', 'youzify_bbpress_default_options' );
+
+/**
+ * Hide Bbpress Duplicated Filters
+ **/
+add_filter( 'bp_get_activity_show_filters_options', 'youzify_hide_duplicated_bbpress_activity_filters' );
+function youzify_hide_duplicated_bbpress_activity_filters( $filters ) {
+    unset( $filters['bbp_topic_create'], $filters['bbp_reply_create'] );
+    return $filters;
+}

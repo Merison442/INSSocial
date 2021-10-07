@@ -35,7 +35,7 @@ class Youzify_Profile_Quote_Widget {
             <?php if ( ! empty( $image_id ) ) : ?><img loading="lazy" <?php echo youzify_get_image_attributes( $image_id, 'youzify-wide', 'profile-quote-widget' ); ?> alt=""><?php endif; ?>
             <div class="youzify-quote-main-content">
                 <div class="youzify-quote-icon"><i class="fas fa-quote-right"></i></div>
-                <blockquote><?php esc_attr_e( nl2br( $quote_txt ) ); ?></blockquote>
+                <blockquote><?php echo nl2br( $quote_txt ); ?></blockquote>
                 <h3 class="youzify-quote-owner"><?php esc_attr_e( get_the_author_meta( 'youzify_wg_quote_owner', $user_id ) ); ?></h3>
             </div>
         </div>

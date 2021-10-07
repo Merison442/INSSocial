@@ -145,6 +145,14 @@ function youzify_get_column_area( $options ) {
     				$args['name'] = sprintf( '%1s <span class="youzify-ad-flag">%2s</span>', $ads[ $widget_name ]['title'], __( 'ad', 'youzify' ) );
     			}
 
+    			if ( $widget_name =='user_balance' || $widget_name == 'user_badges' ) {
+    				$args['name'] = $args['name'] . '<span class="youzify-widget-label">' . __( 'MyCred', 'youzify' ) . '</span>';
+    			}
+
+    			if ( $widget_name =='gamipress_user_balance' || $widget_name == 'gamipress_user_badges' ) {
+    				$args['name'] = $args['name'] . '<span class="youzify-widget-label">' . __( 'GamiPress', 'youzify' )  . '</span>';
+    			}
+
 				// Print Widget
 				youzify_profile_structure_template( array(
 					'icon_title' => ( 'visible' == $visibility ) ? __( 'Hide Widget', 'youzify' ) : __( 'Show Widget', 'youzify' ),

@@ -3,7 +3,7 @@
  * Plugin Name: Youzify
  * Plugin URI:  https://youzify.com
  * Description: Youzify is a WordPress Community, Social Network and User Profiles management solution with a Secure Membership System, Front-end Account Settings, Powerful Admin Panel, Many Header Styles, +20 Profile Widgets, 16 Color Schemes, Advanced Author Widgets, Fully Responsive Design, Extremely Customizable and a Bunch of Unlimited Features provided by KaineLabs.
- * Version:     1.1.1
+ * Version:     1.1.2
  * Author:      Youssef Kaine
  * Author URI:  https://www.kainelabs.com
  * License:     GPL-2.0+
@@ -16,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Youzify Version.
-define( 'YOUZIFY_VERSION', '1.1.1' );
+define( 'YOUZIFY_VERSION', '1.1.2' );
 
 // Youzify Basename
 define( 'YOUZIFY_BASENAME', plugin_basename( __FILE__ ) );
@@ -89,9 +89,6 @@ function youzify_activated_hook() {
     // Flush Rewrite Rules.
     flush_rewrite_rules();
 
-    // Set Transient for Change Log Notice.
-    set_transient( 'youzify-change-log-notice-' . YOUZIFY_VERSION, true, 5 );
-
     do_action( 'youzify_activated' );
 
 }
@@ -112,9 +109,6 @@ function youzify_on_update_process( $upgrader_object, $options ) {
 
             if ( $plugin == YOUZIFY_BASENAME ) {
 
-                // Set Transient for Change Log Notice.
-                set_transient( 'youzify-change-log-notice-' . YOUZIFY_VERSION, true, 5 );
-
                 // Include Setup File.
                 require_once YOUZIFY_PATH . '/includes/public/core/class-youzify-setup.php';
 
@@ -123,6 +117,9 @@ function youzify_on_update_process( $upgrader_object, $options ) {
 
                 // Build Database.
                 $Setup->build_database_tables();
+
+                // Options.
+                $Setup->install_options();
 
                 return;
             }

@@ -41,6 +41,7 @@ function youzify_public_scripts() {
 
     // Members & Groups Directories CSS
     if ( $is_members_directory || $is_groups_directory ) {
+
         wp_enqueue_script( 'masonry' );
         wp_enqueue_style( 'youzify-directories', YOUZIFY_ASSETS . 'css/youzify-directories.min.css', array( 'dashicons' ), YOUZIFY_VERSION );
         wp_enqueue_script( 'youzify-directories', YOUZIFY_ASSETS .'js/youzify-directories.min.js', $jquery, YOUZIFY_VERSION, true );
