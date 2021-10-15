@@ -62,6 +62,8 @@ function youzify_load_widgets() {
     register_widget( 'Youzify_Community_Media_Widget' );
     register_widget( 'Youzify_Group_Description_Widget' );
     register_widget( 'Youzify_Verified_Users_Widget' );
+    register_widget( 'Youzify_Mycred_Balance_Widget' );
+
 }
 
 /**

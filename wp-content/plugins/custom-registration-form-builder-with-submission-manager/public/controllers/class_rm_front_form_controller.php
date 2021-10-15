@@ -58,7 +58,8 @@ class RM_Front_Form_Controller
             return;
         }             
         
-        $fopts = $fe_form->get_form_options();       
+        $fopts = $fe_form->get_form_options();
+        $total_price = $fe_form->get_pricing_detail($request->req);
         
         if($fe_form->is_expired() && $fopts->post_expiry_action == 'switch_to_another_form')
         {
@@ -134,7 +135,7 @@ class RM_Front_Form_Controller
                 $parameters->email = $primary_data['user_email']->value;
                 $parameters->email_content = $form_options->form_email_content;
                 $parameters->email_subject = $form_options->form_email_subject;
-                $parameters->total_price = $fe_form->get_pricing_detail($request->req)->total_price;
+                $parameters->total_price = empty($total_price) ? 0 : $total_price;
                 $parameters->sub_id = $sub_detail->submission_id;
                 $parameters->form_id = $form_id;
                 RM_Email_Service::auto_responder($parameters,$token);

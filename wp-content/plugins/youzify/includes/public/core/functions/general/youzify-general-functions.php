@@ -1891,3 +1891,30 @@ function youzify_hide_media_category_from_wordpress( $args ) {
 
     return $args;
 }
+
+/**
+ * Get Panel Profile Fields.
+ */
+function youzify_get_panel_profile_fields() {
+
+    // Init Panel Fields.
+    $panel_fields = array();
+
+    // Get All Fields.
+    $all_fields = youzify_get_all_profile_fields();
+
+    foreach ( $all_fields as $field ) {
+
+        // Get ID.
+        $field_id = $field['id'];
+
+        // Add Data.
+        $panel_fields[ $field_id ] = $field['name'];
+
+    }
+
+    // Add User Login Option Data.
+    $panel_fields['user_login'] = __( 'Username', 'youzify' );
+
+    return $panel_fields;
+}

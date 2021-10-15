@@ -4,7 +4,7 @@ Donate link: http://registrationmagic.com/
 Tags: User Registration, Registration, WooCommerce Registration Form, Online Registration, event registration
 Requires at least: 3.5
 Tested up to: 5.8
-Stable tag: 5.0.1.3
+Stable tag: 5.0.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -415,6 +415,9 @@ Note, this functionality is limited to Premium version of RegistrationMagic.
 19. Global Settings.
 
 == Changelog ==
+
+= 5.0.1.4 =
+* Fixed: An issue where an empty field may return warning while sending admin alert email.
 
 = 5.0.1.3 =
 * Minor UI, workflow & security updates.
@@ -1880,6 +1883,9 @@ Fixed: Blocks showing up on front-end with some WP themes.
 * Added Custom Fields
 
 == Upgrade Notice ==
+
+= 5.0.1.4 =
+* Fixed: An issue where an empty field may return warning while sending admin alert email.
 
 = 5.0.1.3 =
 * Minor UI, workflow & security updates.

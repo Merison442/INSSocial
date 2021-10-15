@@ -98,7 +98,9 @@ add_filter( 'youzify_profile_widget_visibility', 'youzify_mycred_is_user_have_ba
  * User Balance WP Widget
  */
 function youzify_mycred_user_balance_wp_widget() {
-    register_widget( 'Youzify_Mycred_Balance_Widget' );
+    // require YOUZIFY_CORE . 'widgets/wordpress-widgets/class-youzify-mycred-balance-widget.php';
+
+    // register_widget( 'Youzify_Mycred_Balance_Widget' );
 }
 
 add_action( 'widgets_init', 'youzify_mycred_user_balance_wp_widget' );

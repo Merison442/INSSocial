@@ -41,6 +41,7 @@ class Youzify_Smart_Author_Widget extends WP_Widget {
 
 	    // Get Input's Data.
 		$meta_types = youzify_get_panel_profile_fields();
+
 		$networks_icons_types = array( 'silver' => __( 'Silver', 'youzify' ), 'colorful' => __( 'Colorful', 'youzify' ), 'transparent' => __( 'Transparent', 'youzify' ), 'no-bg' => __( 'No Background', 'youzify' ) );
 		$networks_icons_styles = array( 'flat' => __( 'Flat', 'youzify' ), 'radius' => __( 'Radius', 'youzify' ), 'circle' => __( 'Circle', 'youzify' ) );
 

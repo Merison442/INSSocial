@@ -30,9 +30,6 @@ class Youzify_Mycred_Balance_Widget extends WP_Widget {
 	    // Get Widget Data.
 	    $instance = wp_parse_args( (array) $instance, $defaults );
 
-	    // Get Input's Data.
-		$meta_types = youzify_get_panel_profile_fields();
-
 		?>
 
 		<!-- Widget Title. -->
@@ -74,6 +71,10 @@ class Youzify_Mycred_Balance_Widget extends WP_Widget {
 		$user_id = ! empty( $instance['user_id'] ) ? $instance['user_id'] : get_current_user_id();
 
 		if ( empty( $user_id ) ) {
+			return;
+		}
+
+		if ( ! function_exists( 'youzify_mycred_get_user_balance_box' ) ) {
 			return;
 		}
 

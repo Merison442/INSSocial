@@ -57,33 +57,6 @@ function youzify_is_panel_tab( $page_name, $tab_name ) {
 /**
  * Get Panel Profile Fields.
  */
-function youzify_get_panel_profile_fields() {
-
-    // Init Panel Fields.
-    $panel_fields = array();
-
-    // Get All Fields.
-    $all_fields = youzify_get_all_profile_fields();
-
-    foreach ( $all_fields as $field ) {
-
-        // Get ID.
-        $field_id = $field['id'];
-
-        // Add Data.
-        $panel_fields[ $field_id ] = $field['name'];
-
-    }
-
-    // Add User Login Option Data.
-    $panel_fields['user_login'] = __( 'Username', 'youzify' );
-
-    return $panel_fields;
-}
-
-/**
- * Get Panel Profile Fields.
- */
 function youzify_get_user_tags_xprofile_fields() {
 
     // Init Panel Fields.
@@ -981,7 +954,6 @@ function youzify_pro_version_banner( $show_button = true ) {
         youzify_update_option( $_GET['youzify-dismiss-offer-notice'], 1 );
     }
 
-
     if ( strtotime( '2021/11/1') < strtotime( 'now' ) || youzify_option( $id ) ) {
         return;
     }
@@ -1008,7 +980,7 @@ function youzify_pro_version_banner( $show_button = true ) {
     <div class="yzp-head-title" style="color: #fff952;">Due to the increased value in our premium version the price will be increased by the end of this month!</div>
     <div class="yzp-head-title">Your last chance to secure <span class="position-relative text-nowrap" style="position: relative;"><img class="position-absolute" style="left: 50%;top: 66%;transform: translate(-50%, -50%);width: 100%;height:100%;position: absolute;font-weight: 600;" alt="" src="https://youzify.com/wp-content/uploads//2021/10/yellow-underline.svg"><span class="position-relative">Youzify PRO for only $49</span></span>. It's only <strong>one-time</strong> payment for <strong>lifetime updates</strong>.</div>
 
-    <a target="_blank" style="margin: 5px 0 35px;" class="yzp-view-offer-details" href="https://codecanyon.net/item/youzer-new-wordpress-user-profiles-era/19716647?utm_campaign=youzify-go-pro&utm_medium=banner&utm_source=client-site&utm_content=act-now">👉 GO PRO NOW<span class="dashicons dashicons-arrow-right-alt"></span></a>
+    <a target="_blank" style="margin: 5px 0 35px;" class="yzp-view-offer-details" href="https://1.envato.market/Rqjj9">👉 GO PRO NOW<span class="dashicons dashicons-arrow-right-alt"></span></a>
     <div class="yzo-subhead">What's included in Youzify Pro Version?</div>
     <div class="yzo-features">
         <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>14 Header Styles</div>
@@ -1038,11 +1010,11 @@ function youzify_pro_version_banner( $show_button = true ) {
         <div class="yzo-feature"><span class="dashicons dashicons-saved"></span>All Upcoming Pro Features for FREE</div>
     </div>
 
-    <a target="_blank" style="margin: 15px 0 10px;" class="yzp-view-offer-details" href="https://codecanyon.net/item/youzer-new-wordpress-user-profiles-era/19716647?utm_campaign=youzify-go-pro&utm_medium=banner&utm_source=client-site&utm_content=act-now">👉 GO PRO NOW<span class="dashicons dashicons-arrow-right-alt"></span></a>
+    <a target="_blank" style="margin: 15px 0 10px;" class="yzp-view-offer-details" href="https://1.envato.market/Rqjj9">👉 GO PRO NOW<span class="dashicons dashicons-arrow-right-alt"></span></a>
 
     <div class="yzo-subhead" style="color:#fff952; margin-top: 25px;">Look! WE ARE LIARS. Don't take our word for it. 😂</div>
     <div class="yzo-subhead" >Check +600 reviews with an overall 5-Star rating from real customers just like you at CodeCanyon.</div>
-    <a target="_blank" class="yzp-view-offer-details" href="https://codecanyon.net/user/kainelabs/reviews" style="background: #fff952;margin-top: 0;">👉 View +600 Reviews at CodeCanyon<span class="dashicons dashicons-arrow-right-alt"></span></a>
+    <a target="_blank" class="yzp-view-offer-details" href="https://1.envato.market/WDd99M" style="background: #fff952;margin-top: 0;">👉 View +600 Reviews at CodeCanyon<span class="dashicons dashicons-arrow-right-alt"></span></a>
 
     <div class="yzo-subhead" style="margin-top: 25px;font-weight: 400;font-size: 21px;line-height: 34px;"><strong>Fun Fact:</strong> If you hired a developer to develop a custom plugin like Youzify it will cost you a 6 figures number (+$100.000 ) with at least 2 years to have the first version ready and <strong>you still won’t get the same clean optimized code, functionalities, performance, and design and continuous progress and support.</strong></div>
 
@@ -1060,7 +1032,7 @@ function youzify_pro_version_banner( $show_button = true ) {
         <p>In short terms, we don't want you to purchase our plugin <strong>we want you as a customer for LIFE.</strong></p>
 
         <p>We dedicated lives to this project and our main goal is to <strong>build HUSTLE-FREE plugins where our clients will focus on their business instead of wasting their time dealing with bugs.</strong></p>
-        <a target="_blank" class="yzp-view-offer-details" href="https://codecanyon.net/item/youzer-new-wordpress-user-profiles-era/19716647?utm_campaign=youzify-go-pro&utm_medium=banner&utm_source=client-site&utm_content=act-now">👉 GO PRO NOW<span class="dashicons dashicons-arrow-right-alt"></span></a>
+        <a target="_blank" class="yzp-view-offer-details" href="https://1.envato.market/Rqjj9">👉 GO PRO NOW<span class="dashicons dashicons-arrow-right-alt"></span></a>
     </div>
 
     <!-- <div class="yzp-offer-buttons"> </div> -->

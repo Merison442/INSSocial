@@ -304,6 +304,10 @@
 /**
  * Mycred Badges
  */
+.youzify-user-badges-tab {
+    display: flex;
+}
+
 .youzify-user-badges-tab .youzify-user-badge-item {
     width: 174px;
     padding: 25px;
